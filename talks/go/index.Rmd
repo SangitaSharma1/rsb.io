@@ -1,0 +1,227 @@
+---
+title       : Go - Fast, Good, and Free
+subtitle    : 
+author      : Ryan S. Brown
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : github        # tomorrow
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+---
+
+## Core Goals
+
+1. Concurrency
+2. Efficiency
+3. Reliablility
+
+
+---
+
+## 35,000 feet
+
+* By Google, for Google-type problems
+* Networked apps
+* Cheap microthreads (goroutines)
+* Baked-in IPC (channels)
+* Expose resources (let programmers be smart)
+* Garbage collected (they aren't that smart...)
+
+```{go}
+import (
+        "fmt"
+        "github.com/user/project"
+)
+
+func main() {
+        project.Serve(":8000")
+}
+```
+
+---
+
+## Fun Facts
+
+* Designed by Rob Pike (UNIX, Plan9, UTF-8)
+* Very solid standard libraries
+* All 1.0+ code will always remain compatible
+
+---
+
+## Style Guidlines
+
+* Python: user enforced pep8
+* Go: `go fmt`
+* Perl: The more like line noise the better
+* No more arguing about style
+* Unused imports are compile errors
+* Exactly 1 universal way of formatting
+
+---
+
+## Packaging
+
+# One Binary to Rule Them All
+There are no shared libraries. `go build` packages in all dependencies
+
+# Download a library
+`go get github.com/ryansb/lmk`
+
+# Install a tool
+`go install github.com/bitly/nsqd/nsqlookupd`
+
+---
+
+## Packaging Continued
+
+# Starting a File
+package myCoolApplication
+
+# Using a package
+```{go}
+import (
+    anotherpathmodule "vcs.io/repo/path"
+    "os/path"
+)
+anotherpathmodule.SomeFunction()
+path.SomeValue
+```
+
+---
+
+## In Your Module
+
+# Capital letters public
+
+```{go}
+func ReadFromBackend(address string) string {
+    connection := connectTo(address)
+    return connection.Read()
+}
+```
+
+# Lower case stay protected
+You can use protected values anywhere in your module
+
+```{go}
+type MyConnectionThing struct {
+    FieldName string
+}
+func connectTo(address string) MyConnectionThing {
+    conn := MyConnectionThing{Address: address}
+    return conn
+```
+
+# No equivalent to "private"
+
+---
+
+## Interfaces
+
+# Implict
+
+```{go}
+type Foo interface {
+    Bar(int) string
+    Baz() int
+}
+
+func (f *Foo) Bar(howmany int) string {
+    var some = howmany
+    _ := some
+    return "hello"
+}
+```
+
+* Anything that has methods Bar() and Baz() implements Foo
+* You can accidentally implement interfaces (stay away from names like Write)
+
+---
+
+## Write
+
+```{go}
+import (
+        "fmt"
+        "time"
+)
+
+func shout(where string, out *chan string) {
+        for {
+                time.Sleep(2 * time.Second)
+                // the <- operator adds a value to a channel
+                *out <- "hey there from " + where
+        }
+}
+```
+
+---
+
+## Read
+
+```{go}
+func main() {
+        // a channel can have many writers and many readers
+        lnk, oma := make(chan string), make(chan string)
+        // just tell a function to "go" do things in the background
+        go shout("Lincoln", &lnk)
+        go shout("Lincoln", &lnk)
+        go shout("Omaha", &oma)
+        for {
+                // channels block if they're out of data
+                // get whatever channel has data with select
+                select {
+                    case c := <-lnk :
+                        fmt.Println(c)
+                    case c := <-oma :
+                        fmt.Println(c)
+                }
+        }
+}
+```
+
+---
+
+## Deploy Your App
+
+* python: write a file to control one of the three DIFFERENT packaging libraries
+* Go: `go build; scp myapp webserver:/bin/myapp; echo "that's it. Done."`
+* C#: use alyx :)
+* C++: compile + make sure the shared libs are on all your web servers
+
+---
+
+## Concurrency Models
+
+* node.js: single-threaded, callback-based concurrency, promises
+* python: single-threaded by default, capable of OS threads OR processes, or greenlets
+* C++: gets run on graphics cards (YMMV)
+* Go: multiprocesor, uses its own scheduler for goroutines
+* Bash: OS threads and pain
+
+---
+
+## Scheduling goroutines
+
+* Machine Thread
+* Scheduling Thread
+* Goroutine
+* Goroutines are multiplexed across OS threads
+
+---
+
+## Used at
+
+1. dl.google.com (groupcache) since July
+1. cloudflare (railgun) since 2012
+1. iron.io (ironMQ) since 2012
+1. bit.ly (nsqd) since January
+
+---
+
+## References
+
+* [Standard Library](http://golang.org/pkg/)
+* [Effective Go](http://golang.org/doc/effective_go.html)
+

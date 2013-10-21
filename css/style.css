@@ -1,0 +1,106 @@
+.contact {
+  padding-left: 15%;
+  /*padding-right: 20%;*/
+}
+
+.projects {
+  padding-left: 10%;
+}
+
+.blog {
+  padding-left: 10%;
+}
+
+.description {
+  margin-left: 1em;
+}
+
+.undecorated {
+  list-style-type: none;
+}
+
+.contact-methods {
+  padding-left: 0;
+  padding-top: .75em;
+  font-size: 1.5em;
+  border-top-style: dashed;
+  border-top-width: 1px;
+  border-top-color: #aaa;
+}
+
+p {
+  font-size: .95em;
+  max-width: 33em;
+}
+
+body {
+  font-family: "Noto Sans", sans-serif;
+}
+.translucent-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .5;
+  z-index: -999;
+  background-image: url('../img/squairy_light.png');
+}
+
+.faint-right-border {
+  border-right-style: dashed;
+  padding-right: 5%;
+}
+
+.faint-left-border {
+  border-left-style: dashed;
+  border-width: 1px;
+  border-color: #aaa;
+}
+
+.padding-right-5 {
+  padding-right: 5%;
+}
+
+.container {
+  border-color: #444;
+  padding-bottom: 1em;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.attribution {
+/*  margin-top: 1em;
+  padding-top: 1em; */
+  text-align: center;
+  width: 100%;
+  font-size: .6em;
+/*  border-top-style: dashed;
+  border-top-width: 1px;
+  border-top-color: #aaa;*/
+}
+
+a {
+  text-decoration: none;
+  color: steelblue;
+}
+a:visited {
+  color: midnightblue;
+}
+
+.description a {
+  font-weight: bold;
+}
+
+
+@media (max-width : 480px) {
+  .contact { padding-left: 10%; }
+  .projects { padding-left: 10%; }
+  .padding-right-5 { padding-right: 0%; } 
+  .container { width: 400px; padding-right: 10%; }
+  .pure-u-1-5 { width: 400px; }
+  .pure-u-3-5 { width: 400px; }
+}
