@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bleeding Heart SecOps</title>
+    <meta charset='utf-8'>
+    <script src='static/slides.js'></script>
+  </head>
+
+  <body style='display: none'>
+
+    <section class='slides layout-widescreen'>
+      
+      <article>
+        <h1>Bleeding Heart SecOps</h1>
+        <h3>Heartbleed!!! A Response Timeline</h3>
+        
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Ryan Brown
+  </p>
+  
+
+          </div>
+        
+      </article>
+      
+  
+  
+      <article>
+      
+        <h3>Everyone&#39;s Hair is ON FIRE!!!</h3>
+        
+  
+  <p>
+    Heartbleed (CVE-2013-0156) is one of the
+  </p>
+  
+<p class="link"><a href="http://www.schneier.com/blog/archives/2014/04/heartbleed.html" target="_blank">worst</a></p><p class="link"><a href="http://blog.opbeat.com/posts/amateur-hour-at-aws/" target="_blank">security</a></p><p class="link"><a href="http://www.kalzumeus.com/2014/04/09/what-heartbleed-can-teach-the-oss-community-about-marketing/" target="_blank">vulnerabilities</a></p><p class="link"><a href="http://heartbleed.com/" target="_blank">ever</a></p>
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Who Was Vulnerable?</h3>
+        
+  <ul>
+  
+    <li>Anyone using AWS Elastic Load Balancer</li>
+  
+    <li>Or nginx</li>
+  
+    <li>Or apache</li>
+  
+    <li>Or any other service that depended on OpenSSL</li>
+  
+  </ul>
+
+  
+  <p>
+    Terrified yet?
+  </p>
+  
+
+<div class="image">
+  <img src="screaming.gif">
+</div>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>How Bad?</h3>
+        
+  <ul>
+  
+    <li>&#34;On a scale of 1 to 10, this is an 11,&#34; Bruce Schneier</li>
+  
+    <li>The remote, untraceable, totally catastrophic level of bad</li>
+  
+    <li>Allows attacker to grab arbitrary (mostly recently freed) slices of RAM from a server</li>
+  
+    <li>Potentially exposes SSL private keys (literally keys to all the traffic)</li>
+  
+    <li>Usernames, passwords, credit card info, client IP&#39;s, email, <b>anything</b> that fits in 64K of RAM</li>
+  
+  </ul>
+
+<div class="image">
+  <img src="ohshit.gif">
+</div>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>All of mycorp.com Exposed</h3>
+        
+  <ul>
+  
+    <li>SSL on prod is terminated at our Elastic Load Balancer</li>
+  
+    <li>Amazon&#39;s response could have been better</li>
+  
+  </ul>
+
+  
+  <div class="code"><pre>&#34;AWS is aware of the HeartBleed Bug (CVE-2014-0160) in OpenSSL and
+investigating any impact or required remediation. We will post back when we
+have more detail.&#34;</pre></div>
+  
+
+  <ul>
+  
+    <li>18 hours later....Amazon gets their act together</li>
+  
+    <li>Using an ELB helped reduce exposure</li>
+  
+    <li>Reissued SSL Certificates</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>But ErrataSec Said....</h3>
+        
+  
+  <p>
+    ErrataSec claimed that Heartbleed is actually unlikely to leak private keys
+<br>
+
+    because to be leaked, the contents of some memory has to be freed first.
+  </p>
+  
+
+  
+  <p>
+    But...
+  </p>
+  
+
+  
+  <p>
+    ELB is multitenant, closed-source, and Amazon doesn&#39;t publish
+<br>
+
+    specifics about the internals
+  </p>
+  
+
+  
+  <p>
+    Theoretically, an instance terminating SSL for mycorp.com could have then been
+<br>
+
+    reconfigured, freeing the memory containing the *.mycorp.com key and exposing
+<br>
+
+    that key to Heartbleed attacks on remaining tenants of the ELB
+  </p>
+  
+<p class="link"><a href="http://blog.erratasec.com/2014/04/why-heartbleed-doesnt-leak-private-key.html" target="_blank">erratasec</a></p>
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>The Good News</h3>
+        
+  <ul>
+  
+    <li>Perfect Forward Secrecy</li>
+  
+    <li>Hopefully low (but nonzero) likelihood of key compromise</li>
+  
+    <li>Relatively small attack surface</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>How?</h3>
+        
+  
+  <p>
+    The real problem was heartbeating, a simple echo service. You send data (up to
+<br>
+
+    64k) in a request, and the server copies that data into a buffer and sends it
+<br>
+
+    as the response.
+  </p>
+  
+
+  
+  <p>
+    The catch is that that there are two &#34;length&#34; fields in the request.
+  </p>
+  
+
+  
+  <p>
+    You claim in one field that there is 64k of data, but in the other claim 0, and
+<br>
+
+    you send 0.
+  </p>
+  
+
+  
+  <p>
+    Boom, you get the contents of 64k of recently freed memory.
+  </p>
+  
+
+  
+  <p>
+    The reason you get recently freed memory is because OpenSSL wrote their own
+<br>
+
+    wrapper around <code>malloc</code>.
+  </p>
+  
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Takeaways</h3>
+        
+  <ul>
+  
+    <li>Designing crypto is hard</li>
+  
+    <li>Small-but-critical details make implementing good crypto even harder</li>
+  
+    <li>Fast mitigation is important</li>
+  
+    <li>Security incident response procedures. If you don&#39;t officially have them, you should</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+
+      <article>
+        <h3>Thank you</h1>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Ryan Brown
+  </p>
+  
+<p class="link"><a href="mailto:sb@ryansb.com" target="_blank">sb@ryansb.com</a></p><p class="link"><a href="http://rsb.io" target="_blank">http://rsb.io</a></p>
+          </div>
+        
+      </article>
+
+  </body>
+  
+</html>

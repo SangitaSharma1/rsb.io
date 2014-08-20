@@ -1,0 +1,95 @@
+Bleeding Heart SecOps
+Heartbleed!!! A Response Timeline
+
+Ryan Brown
+sb@ryansb.com
+http://rsb.io
+
+* Everyone's Hair is ON FIRE!!!
+
+Heartbleed (CVE-2013-0156) is one of the
+
+.link http://www.schneier.com/blog/archives/2014/04/heartbleed.html worst
+
+.link http://blog.opbeat.com/posts/amateur-hour-at-aws/ security
+
+.link http://www.kalzumeus.com/2014/04/09/what-heartbleed-can-teach-the-oss-community-about-marketing/ vulnerabilities
+
+.link http://heartbleed.com/ ever
+
+* Who Was Vulnerable?
+
+- Anyone using AWS Elastic Load Balancer
+- Or nginx
+- Or apache
+- Or any other service that depended on OpenSSL
+
+Terrified yet?
+
+.image screaming.gif
+
+* How Bad?
+
+- "On a scale of 1 to 10, this is an 11," Bruce Schneier
+- The remote, untraceable, totally catastrophic level of bad
+- Allows attacker to grab arbitrary (mostly recently freed) slices of RAM from a server
+- Potentially exposes SSL private keys (literally keys to all the traffic)
+- Usernames, passwords, credit card info, client IP's, email, *anything* that fits in 64K of RAM
+
+.image ohshit.gif
+
+* All of mycorp.com Exposed
+
+- SSL on prod is terminated at our Elastic Load Balancer
+- Amazon's response could have been better
+  "AWS is aware of the HeartBleed Bug (CVE-2014-0160) in OpenSSL and
+  investigating any impact or required remediation. We will post back when we
+  have more detail."
+- 18 hours later....Amazon gets their act together
+- Using an ELB helped reduce exposure
+- Reissued SSL Certificates
+
+* But ErrataSec Said....
+
+ErrataSec claimed that Heartbleed is actually unlikely to leak private keys
+because to be leaked, the contents of some memory has to be freed first.
+
+But...
+
+ELB is multitenant, closed-source, and Amazon doesn't publish
+specifics about the internals
+
+Theoretically, an instance terminating SSL for mycorp.com could have then been
+reconfigured, freeing the memory containing the *.mycorp.com key and exposing
+that key to Heartbleed attacks on remaining tenants of the ELB
+
+.link http://blog.erratasec.com/2014/04/why-heartbleed-doesnt-leak-private-key.html erratasec
+
+* The Good News
+
+- Perfect Forward Secrecy
+- Hopefully low (but nonzero) likelihood of key compromise
+- Relatively small attack surface
+
+* How?
+
+The real problem was heartbeating, a simple echo service. You send data (up to
+64k) in a request, and the server copies that data into a buffer and sends it
+as the response.
+
+The catch is that that there are two "length" fields in the request.
+
+You claim in one field that there is 64k of data, but in the other claim 0, and
+you send 0.
+
+Boom, you get the contents of 64k of recently freed memory.
+
+The reason you get recently freed memory is because OpenSSL wrote their own
+wrapper around `malloc`.
+
+* Takeaways
+
+- Designing crypto is hard
+- Small-but-critical details make implementing good crypto even harder
+- Fast mitigation is important
+- Security incident response procedures. If you don't officially have them, you should
