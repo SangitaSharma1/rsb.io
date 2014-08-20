@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Presentation">
+<head>
+   <meta http-equiv="content-type" content="text/html;charset=utf-8">
+   <title>Vim Seminar</title>
+
+<meta name="generator" content="- generator not found -">
+<meta name="author"    content=" Ryan Brown " >
+
+<!-- Properties for +1 sharing -->
+<meta itemprop="name" content="Vim Seminar">
+<meta itemprop="description" content="Slides for a seminar about Vim, a highly efficient and configurable text editor based on the UNIX vi editor.">
+<meta itemprop="image" content="http://www.vim.org/images/vim_editor.gif">
+
+<!-- S6 style sheet links -->
+<link rel="stylesheet" href="vim-seminar.css" media="projection" id="styleProjection">
+<link rel="stylesheet" href="resources/screen.css"         media="screen"     id="styleScreen">
+<link rel="stylesheet" href="resources/print.css"          media="print">
+
+<!-- S6 JS -->
+<script src="resources/jquery.js"></script>
+<script src="resources/jquery.slideshow.js"></script>
+<!-- Javascript necessary to run the Google+ +1 button-->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+<script>
+  $(document).ready( function() {
+    Slideshow.init();
+  } );
+</script>
+<!-- Google+ Button -->
+<!-- <g:plusone size="medium" annotation="inline"></g:plusone> -->
+
+<!-- Better Browser Banner for Microsoft Internet Explorer (IE) -->
+<!--[if IE]>
+<script src="resources/jquery.microsoft.js"></script>
+<![endif]-->
+
+
+
+</head>
+<body>
+
+<div class="layout">
+  <div id="header"></div>
+  <div id="footer">
+    <h1></h1>
+    <h2></h2>
+  </div>
+</div>
+
+<div class="presentation">
+
+<div class='slide title'>
+<!-- _S9SLIDE_  title -->
+
+<h2> Vim: The Most Efficient Editor </h2>
+
+<p> Ryan Brown: Sysadmin, Programmer, Vim user </p>
+<p> s/user/addict/ </p>
+
+<p><img src="logo.gif" alt="Vim logo" /></p>
+
+
+</div>
+<div class='slide title'>
+
+<h2> Introductions </h2>
+
+<p> Hi, I'm Ryan. I make things for computers, and I use Vim for making most of
+those. (Even these slides) </p>
+
+<p> If you have questions, ask.</p>
+
+<p> But please hold "What if blarg foo's the honk?" type questions until the
+end. </p>
+
+
+</div>
+<div class='slide '>
+<h1 id="what-is-vim"> What is Vim? </h1>
+<!-- begin step {} -->
+<div class="step">
+  <ul>
+    <li> Keystroke driven modal editor </li>
+  </ul>
+</div>
+<!-- end step -->
+<!-- begin step {} -->
+<div class="step">
+
+  <ul>
+  <li> Vim is efficient because it is geared towards <em>mutation</em> of text.</li>
+  </ul>
+</div>
+<!-- end step -->
+<!-- begin step {} -->
+<div class="step">
+
+  <ul>
+  <li> Learn Vim &raquo; Edit faster &raquo; Code faster &raquo; Finish sooner &raquo; Have more free time (&raquo; Profit?)</li>
+  </ul>
+</div>
+<!-- end step -->
+
+<p><img src="logo.gif" alt="Vim logo" /></p>
+
+
+</div>
+<div class='slide '>
+<h1 id="agenda">Agenda</h1>
+<ul>
+  <li><strike>What is Vim?</strike></li>
+  <li>Basic Environment</li>
+  <li>Editing</li>
+  <li>Configuration</li>
+  <li>Advanced Use</li>
+</ul>
+</div>
+
+<div class='slide '>
+<h1 id="how-to-start">Getting into Vim</h1>
+<p>Mac/Linux/UNIX: vim myfile.py</p>
+<p>Windows: There's an icon or something</p>
+</div>
+
+<div class='slide '>
+<h1 id="how-to-quit">Vim is scary</h1>
+<p>Press Escape, then type :q</p>
+<p><code>Esc :q</code></p>
+<p>This will fail if the file hasn't been saved. Fix that one of two ways.</p>
+<ol>
+  <li><code>Esc :q!</code> force quit, tells vim to ignore all warnings/errors/dragons</li>
+  <li><code>Esc :wq</code> save and quit</li>
+</ol>
+</div>
+
+<div class='slide '>
+<h1 id="move-it-movie-it">We Like to Move It</h1>
+<pre>      ^                     The k key moves up
+      k                     The h key is at the left and moves left.
+< h       l >               The l key is at the right and moves right.
+      j                     The j key looks like a down arrow.
+      v</pre>
+</div>
+
+<div class='slide '>
+<h1 id="get-editing">Get Editing</h1>
+<ul>
+  <li>Hit <code>i</code> to insert text</li>
+<!-- begin step {} -->
+<div class="step">
+  <li>Esc gets you out of Insert Mode</li>
+  <li>Wait, what's a mode?</li>
+</div>
+<!-- end step -->
+<!-- begin step {} -->
+<div class="step">
+    <li>Normal and Insert modes</li>
+</div>
+<!-- end step -->
+</ul>
+</div>
+
+<div class='slide '>
+<h1 id="copy-paste">Grammar Lessons</h1>
+<p>You can think of any Normal mode command as a sentence.</p>
+<p>Copy (yank) the line your cursor is on</p>
+<pre>yy</pre>
+<p>Yank three lines</p>
+<pre>3yy</pre>
+<p>Commands can also accept arguments like movement commands. Yank accepts movement commands.</p>
+<pre>yj</pre>
+</div>
+
+<div class='slide '>
+<h1 id="pro-tips">Pro Tips</h1>
+<ul>
+  <li> Arrow keys are bad. Use <code>hjkl</code> for movement</li>
+  <li> PgUp/PgDn are bad. Use ^B (page back) and ^F (page forward)</li>
+  <li> No mouse. Targeted movements are good. <code>hjklewbtfHMLN</code></li>
+</ul>
+<p>Old-school vi users use <code>Ctrl + [</code> instead of escape because Esc
+used to sometimes send different key sequences. Use whichever you want to, they
+both do the same thing</p>
+
+<p>All these key sequences are intended so you never have to leave the home
+row. <code>hjkl</code> was chosen because it's on the home row.</p>
+
+<p>Less time moving hands = more time working = done faster</p>
+</div>
+
+<div class='slide '>
+<h1 id="text-objects">Text Objects</h1>
+<p>:help text-objects</p>
+<p>w : word</p>
+<p>W : WORD</p>
+<p>s : sentence defined as a block ending with '.', '!', '?', newline, or tab</p>
+<p>p : paragraph is any block of text after an empty line</p>
+<p>B : Block</p>
+<p>t : tag is the contents of a &lt;aa&gt; and &lt;/aa&gt; </p>
+<p>Any matching character '(', '[', etc.</p>
+</div>
+
+<div class='slide '>
+<h1 id="chained-commands">Chained Commands are Powerful</h1>
+<p>Forgot semicolon?</p>
+<pre>A;</pre>
+<p>Swap this line with the next?</p>
+<pre>ddp</pre>
+<p>Swapped-letter typo?</p>
+<pre>xp</pre>
+<p>Change the contents of a set of quotes?</p>
+<pre>ci"</pre>
+<p>Delete an HTML tag and its contents?</p>
+<pre>dat</pre>
+</div>
+
+<div class='slide '>
+<h1 id="selection">Selecting Text</h1>
+<p>Most common way to select text: Visual Mode</p>
+<pre>Shift+V</pre>
+<p>Next most common: Visual Block Mode</p>
+<pre>^V</pre>
+<p>After selecting text, you can then act on these blocks with commands, try these for starters:</p>
+<pre>d
+x
+c
+y
+~</pre>
+</div>
+
+<div class='slide '>
+<h1 id="multi-window">Multiple Windows</h1>
+<p>Sure Vim is a command-line program, but it's got windows. You can even move
+them around and such.</p>
+<p>Just typing :help brings up a new window and you can close it with :q (:qa
+closes all of your open windows) or switch focus with ^W^W.</p>
+<p>Open a new window horizontally split. (For vertical split use v instead of
+s)</p>
+<pre>^Ws</pre>
+<p>To cycle through all windows you can use:</p>
+<pre>^W^W</pre>
+<p>Or use motion hot keys to move in a direction (<code>hjkl</code>, not arrow
+keys). This, for example, goes one window to the left:</p>
+<pre>^Wl</pre>
+<p>Windows are useful when you have a big screen, or just a bunch of files you
+want to see at once. For more info: <code>:help window</code> 
+</div>
+
+<div class='slide '>
+<h1 id="token-completion">Token Completion</h1>
+<p>Complete first match searching backwards</p>
+<pre>^P</pre>
+<p>Complete first match searching forwards</p>
+<pre>^N</pre>
+<p>Complete a filename</p>
+<pre>^X^F</pre>
+<p>Complete a token in any included files</p>
+<pre>^X^I</pre>
+<p>For example, to complete the token <code>longvariablename</code>:</p>
+<pre>print lon^N</pre>
+</div>
+
+<div class='slide '>
+<h1 id="language-help">Language Help</h1>
+<p>Not sure what a builtin does? No problem.</p>
+<pre>K</pre>
+<p>Not helpful for Java and some other languages, but for Perl, C, Python, and
+a bunch of others it's a real lifesaver.</p>
+</div>
+
+<div class='slide '>
+<h1 id="external-cmd">External Commands</h1>
+<p>Run an external command without leaving Vim:</p>
+<pre>:!cmd</pre>
+<p>For instance, ls</p>
+<pre>:!ls</pre>
+<p>Now let's rot13 our file:</p>
+<pre>:%!tr a-z n-za-m</pre>
+</div>
+
+<div class='slide '>
+<h1 id="sytax-check">Syntax Check Yourself</h1>
+<p>Perl</p>
+<pre>:!perl -c %</pre>
+<p>Java</p>
+<pre>:!javac %</pre>
+<p>XML</p>
+<pre>:!xmllint %</pre>
+<p>The % just expands to the name of your current file</p>
+</div>
+
+<div class='slide '>
+<h1 id="configuring-vim">Configuring vim</h1>
+<p>Vim is highly configurable and has a builtin language (vimscript) if you
+want to write plugins (of which there are many). For basic configuration, you
+need to know about:</p>
+<pre>:set
+:map
+:autocmd</pre>
+</div>
+
+<div class='slide '>
+<h1 id="set">:set</h1>
+<p><code>:set</code> lets you enable, disable, and configure a lot of options</p>
+<pre>:set option</pre>
+<p>Enable an option if it is a boolean</p>
+<pre>:set <strong>no</strong>option</pre>
+<p>Disable an option if it is a boolean</p>
+<pre>:set <strong>inv</strong>option</pre>
+<p>Invert an option if it is a boolean</p>
+<pre>:set option=value</pre>
+<p>Set an option to <em>value</em></p>
+</div>
+<div class='slide '>
+	<h1 id="autoindent">:set autoindent</h1>
+<p>Autoindent will maintain a level of indentation for a new line. It's about
+as simple as it gets.</p>
+<pre>Hello
+	foo
+	bar(honk){
+	//stuff
+	}
+</pre>
+</div>
+
+<div class='slide '>
+<h1 id="smartindent">:set smartindent</h1>
+<p>First, disable autoindent. Smartindent tries to recognize code that "should"
+be indented. It's right most of the time.</p>
+<p>Try enabling smartindent and typing a Java function header:</p>
+<pre>public int myfunc(x, y){
+	|</pre>
+<p>After you press enter your cursor should be where the | character is.</p>
+<p>Type some more, then close the brace. That should reduce the indentation
+level.</p>
+</div>
+
+<div class='slide '>
+<h1 id="useful-options">Useful Options</h1>
+<pre>:set number</pre>
+<p>Show line numbers. (:NUM takes you to that line in a file)</p>
+<pre>:set list (see help :listchars)</pre>
+<p>Show whitespace, configure using listchars</p>
+<pre>:set nocompatible</pre>
+<p>Disable "vi compatibility" because Vim has better defaults</p>
+<pre>:set incsearch</pre>
+<p>Search while typing</p>
+<pre>:set hlsearch</pre>
+<p>Highlight search results in the file</p>
+<pre>:set shiftwidth=NUM</pre>
+<p>Set shift to NUM spaces for &gt;&gt; command when inserting.</p>
+</div>
+
+<div class='slide '>
+<h1 id="useful-options2">Useful Options Continued</h1>
+<pre>:set expandtab</pre>
+<p>Use tabs instead of spaces when inserting. The number of spaces is dependent
+on the tabstop option.</p>
+<pre>:set tabstop=NUM</pre>
+<p>Set how many spaces to display tabs with</p>
+<pre>:set backpace=indent,eol</pre>
+<p>Enable sane backspace defaults</p>
+<pre>:set textwidth=NUM</pre>
+<p>Enable text wrapping after NUM characters</p>
+<pre>:set showcmd</pre>
+<p>Show unfinished command-mode commands</p>
+<pre>:set ruler</pre>
+<p>Put useful info at the bottom of your window</p>
+</div>
+
+<div class='slide '>
+<h1 id="map">:map</h1>
+<pre>:map &lt;C-s&gt; :w&lt;CR&gt;</pre>
+<p>Maps Ctrl+s to :w+Enter. &lt;CR&gt; makes Vim act as if you pressed enter,
+and &lt;C-s&gt; is the notation for Ctrl+s.</p>
+<p>The best way to make hotkeys more logical is to change them to what makes
+sense to you.</p>
+</div>
+
+<div class='slide '>
+<h1 id="autocmd">:autocmd</h1>
+<p>An autocmd is a command that executes only under a specific set of
+circumstances.</p>
+<pre>autocmd FileType java syntax on</pre>
+<p>Turn on syntax highlighting on the detected filetype is Java.</p>
+<p>Auto commands are really useful, and are great for making Vim do exactly
+what you want.</p>
+</div>
+
+<div class='slide '>
+<h1 id="syntax">:syntax</h1>
+<p>vim has builtin syntax highlighting for perl, python, java, c, c++, ruby,
+bash, html, xml, and many, many others.</p>
+<pre>:set background=[dark|light]</pre>
+<p>tell vim about your background color so it can make good color choices.</p>
+<pre>:filetype on</pre>
+<p>turn on automatic filetype detection</p>
+<pre>:syntax on</pre>
+<p>turn on syntax highlighting</p>
+</div>
+
+<div class='slide '>
+<h1 id="plugins">Plugins</h1>
+<p>Vim has its own scripting language, and IBM has made an awesome <a
+	href="http://www.ibm.com/developerworks/linux/library/l-vim-script-1/index.html">Scripting
+	the Vim editor</a> tutorial if you want to see the insides.</p>
+<p>More useful, though, is knowing that there are plugins for Vim that people
+have already written and put up on <a href="http://www.vim.org">vim.org</a>
+where you can search for and download them.</p>
+</div>
+
+<div class='slide '>
+<h1 id="manage-plugins">Plugin Management</h1>
+<p>So just one plugin doesn't seem hard to deal with, but when you have a lot of plugins that .vim directory can get pretty cluttered.</p>
+<p>Guess what?</p>
+<!-- begin step {} -->
+<div class="step">
+<p>There's a plugin for that!</p>
+</div>
+<!-- end step -->
+<!-- begin step {} -->
+<div class="step">
+<p>Fortunately, there's a path to <a href="http://www.charlietanksley.net/philtex/sane-vim-plugin-management/">Sane Vim Plugin Management</a> through the <a href="https://github.com/gmarik/vundle">Vundle</a> plugin.</p>
+<p>First, make sure there's nothing in your .vim directory, then clone the Vundle repo with: <pre>git clone http://github.com/gmarik/vundle.git ~/.vim/vundle.git</pre></p>
+
+</div>
+<!-- end step -->
+</div>
+
+<div class='slide '>
+<h1 id="manage-plugins2">Plugin Management Continued</h1>
+<pre>set nocompatible
+filetype off  " required!
+set rtp+=~/.vim/vundle.git/ 
+call vundle#rc()
+
+" Your bundles here
+
+filetype plugin indent on     " required!"</pre>
+<p>And where it says " Your bundles here you can put in a list of plugins you want, just like this:</p>
+<pre>Bundle 'nerdcommenter.vim'
+Bundle 'tslime.vim'</pre>
+<p>Then when you run <code>:BundleInstall</code> Vundle goes and finds those plugins and installs them.</p>
+</div>
+
+<div class='slide '>
+<h1 id="files-references">Files and References</h1>
+<p>Files</p>
+<ul>
+<li><a href="http://www.linuxscrew.com/wp-content/uploads/2007/10/vi-vim-cheat-sheet.gif">Vim Graphical Cheat Sheet</a></li>
+<li><a href="http://www.semicomplete.com/misc/viquickref.pdf">vi Quick Reference</a></li>
+<li><a href="http://tnerual.eriogerg.free.fr/vimqrc.pdf">Another (slightly more comprehensive) Quick Reference Sheet</a></li>
+</ul>
+<p>References</p>
+<ul>
+	<li>The awesome :help docs for Vim</li>
+	<li>vimtutor</li>
+	<li>A lot of time using Vim</li>
+</ul>
+</div>
+
+<div class='slide '>
+<h1 id="the-end">The End</h1>
+<p>Find the slides later:</p>
+<ul>
+  <li>Slides: <a href="http://ryansb.com/static/seminars/vim/">ryansb.com/static/seminars/vim/</a></li>
+  <li>My vimrc: <a href="https://github.com/ryansb/dotfiles/blob/master/vimrc">github.com/ryansb/dotfiles</a></li>
+</ul>
+
+<p>Find me later:</p>
+<ul>
+  <li>sb spam [at] ryansb [dot] com (Remember, I hate spam, so make sure to remove it)</li>
+  <li>gplus.to/ryansb </li>
+  <li>fb.me/ryansb </li>
+</ul>
+<g:plusone size="large" annotation="inline"></g:plusone>
+</div>
+</div><!-- presentation -->
+</body>
+</html>
