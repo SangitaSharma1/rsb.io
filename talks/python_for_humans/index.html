@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html;charset=utf-8">
+   <title>The Python Basics</title>
+
+<meta name="generator" content="- generator not found -">
+<meta name="author"    content=" Ryan Brown " >
+
+<!-- S6 style sheet links -->
+<link rel="stylesheet" href="python-seminar.css" media="projection" id="styleProjection">
+<link rel="stylesheet" href="resources/screen.css"         media="screen"     id="styleScreen">
+<link rel="stylesheet" href="resources/print.css"          media="print">
+
+<!-- S6 JS -->
+<script src="resources/jquery.js"></script>
+<script src="resources/jquery.slideshow.js"></script>
+<script>
+  $(document).ready( function() {
+    Slideshow.init();
+  } );
+
+
+</script>
+
+<!-- Better Browser Banner for Microsoft Internet Explorer (IE) -->
+<!--[if IE]>
+<script src="resources/jquery.microsoft.js"></script>
+<![endif]-->
+
+
+
+</head>
+<body>
+
+<div class="layout">
+  <div id="header"></div>
+  <div id="footer">
+    <h1></h1>
+    <h2></h2>
+  </div>
+</div>
+
+<div class="presentation">
+
+<div class='slide title'>
+<!-- _S9SLIDE_  title -->
+
+<h2> Python for Humans </h2>
+<p> A language that you write like language </p>
+
+<p> Ryan Brown: Sysadmin, Python Developer </p>
+<p>It's all in STDlib</p>
+
+
+</div>
+<div class='slide title'>
+
+<h2> Introductions </h2>
+
+<p> Hi, I'm Ryan. I make things for computers, and I use Vim for making most of
+those. (Even these slides) </p>
+
+<p> If you have questions, fire away. </p>
+
+
+</div>
+<div class='slide '>
+<h1 id="what-is-python"> What is Python? </h1><!-- begin step {} -->
+<div class="step">
+
+  <ul>
+    <li> Whitespace-based programming language </li>
+  </ul>
+</div>
+<!-- end step -->
+
+<!-- begin step {} -->
+<div class="step">
+
+  <ul>
+    <li> With a lot of community support </li>
+  </ul>
+</div>
+<!-- end step -->
+
+<!-- begin step {} -->
+<div class="step">
+
+  <ul>
+    <li> And hundreds of modules for every task you can think of </li>
+  </ul>
+</div>
+<!-- end step -->
+<!-- begin step {} -->
+<div class="step">
+
+  <ul>
+  <li> Python does its best to stay out of your way so you can get to programming </li>
+  </ul>
+</div>
+<!-- end step -->
+<!-- begin step {} -->
+<div class="step">
+
+  <ul>
+  <li> Learn Python -&gt; Write <strong>lots</strong> of programs -&gt; Code better -&gt; Make awesome stuff (-&gt; Profit?)</li>
+  </ul>
+</div>
+<!-- end step -->
+
+
+</div>
+<div class='slide '>
+<h1 id="agenda">Agenda</h1>
+<ul>
+  <li><strike>What is Python?</strike></li>
+  <li>Getting Started</li>
+  <li>Basic Constructs</li>
+  <li>Apply them</li>
+  <li>Advanced Constructs</li>
+  <li>Apply them</li>
+  <li>Coding Standards</li>
+</ul>
+
+
+</div>
+<div class='slide '>
+<h1 id="how-to-start">Getting Started</h1>
+<p>Unix-y things: <code>python</code></p>
+
+<p>Windows: There's an icon or something</p>
+
+<p>Mac: See Unix</p>
+
+
+</div>
+<div class='slide '>
+<h1 id="interpreter">What's an Interpreter?</h1>
+<p>Short answer: Don't worry, just start writing code</p>
+
+<p>Long answer: It's a program that you can type Python into and it executes
+it. It's nice for prototyping because you don't have to do the
+edit-&gt;save-&gt;run-&gt;repeat dance that you would otherwise.</p>
+
+<p>Try this:</p>
+<div class="highlight"><pre><span class="k">print</span> <span class="s">&quot;hello world&quot;</span>
+</pre></div>
+
+
+</div>
+<div class='slide '>
+<h1 id="more-about">More About Interpreters</h1>
+<p>Python is a fully object-oriented language which means you can have objects
+with their own attributes, functions, etc. It is also interpreted, which means
+you must declare all your objects first (or import them) and use them
+afterwards.</p>
+
+
+</div>
+<div class='slide '>
+<h1 id="syntax">Java Syntax: Compare</h1>
+<p>Java uses braces and semicolons to divide statements, whitespace is only
+really necessary for style. So this code: </p>
+<pre><code>public int myfunction(x, y) {
+  if(x &gt; y) {
+    return x - y;
+  }
+  return x+y;
+}
+System.out.print(myfunction(4, 2));
+System.out.print(myfunction(2, 3));</code></pre>
+<p>Produces the same results as this code:</p>
+<pre><code>public int myfunction(x,y){if(x&gt;y){return x-y;}return x+y;}
+System.out.print(myfunction(4,2)); System.out.print(myfunction(2, 3));</code></pre>
+
+
+</div>
+<div class='slide '>
+<h1 id="python-syntax">Python Uses Whitespace</h1>
+<p>With this block of Python:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">myfunction</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="k">print</span> <span class="n">myfunction</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">myfunction</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+<p>Instead of semicolons Python requires new lines to recognize separate
+logical statements, and indentation levels separate blocks of code instead of
+braces.</p>
+<p>Note: You need a colon to start any indented blocks (loops, function
+definitions, etc)</p>
+
+
+</div>
+<div class='slide '>
+<h1 id="types">Typing</h1>
+<p>Python is loosely typed, which means you just do this:</p>
+<div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="c">#instead of this:</span>
+<span class="nb">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+<p>Python does its best to guess what value you're trying to store (is it an int or a string? Double? List? Tuple? Dict?) and store it as that type. If you aren't sure what type something is, just do this:</p>
+<div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">y</span> <span class="o">=</span> <span class="s">&#39;hello&#39;</span>
+<span class="k">print</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="k">print</span> <span class="nb">type</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+<p>The <code>type</code> keyword tells you what type Python thinks an object is. If you don't like it, you can force Python to try and make it into a different type.</p>
+<div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="mi">892948</span>
+<span class="k">print</span> <span class="n">x</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c"># x is an int</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c"># Force x to be cast as a string, save it to y</span>
+<span class="k">print</span> <span class="n">y</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="c"># Show that y is a string</span>
+</pre></div>
+
+
+
+</div>
+<div class='slide '>
+<h1 id="math">Basic Math</h1>
+<p>Math Operations:</p>
+<ul>
+  <li>=  assignment</li>
+  <li>+  addition</li>
+  <li>-  subtraction</li>
+  <li>*  multiplication</li>
+  <li>/  division</li>
+</ul>
+<div class="highlight"><pre><span class="mi">9</span><span class="o">*</span><span class="mi">3</span></pre></div>
+<p>Storing results:</p>
+<div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="mi">9</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="k">print</span> <span class="n">x</span>
+</pre></div>
+
+
+</div>
+<div class='slide '>
+<h1 id="strings">String Manipulation</h1>
+<div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="s">&quot;hello world&quot;</span>
+</pre></div>
+<p>String manipulation: </p>
+<ul>
+  <li>+ Concatenation</li>
+  <li>* Repetition (i.e. <code>"hello" * 80</code>)</li>
+  <li>% Formatting</li>
+</ul>
+
+<div class="highlight"><pre><span class="k">print</span> <span class="p">(</span><span class="s">&#39;hello&#39;</span> <span class="o">+</span> <span class="s">&#39; &#39;</span> <span class="o">+</span> <span class="s">&#39;there&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&quot;in ur </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">ing ur </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;base&#39;</span><span class="p">,</span> <span class="s">&#39;kill&#39;</span><span class="p">,</span> <span class="s">&#39;dudes&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+<div class='slide '>
+<h1 id="list">Lists</h1>
+<div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;seventy-three&#39;</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+</pre></div>
+<p>A list is a series of mutable values. These values can be any type (including other lists)</p>
+<ul>
+  <li>Values are accessed by index (index starts at 0 for the first value)</li>
+  <li>Can be iterated through</li>
+  <li>Can be appended/prepended to</li>
+</ul>
+<div class="highlight"><pre><span class="k">print</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">y</span>
+
+<span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;lastthing&#39;</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="n">x</span>
+</pre></div>
+
+
+
+</div>
+<div class='slide '>
+<h1 id="tuples">Tuples</h1>
+<p>A tuple is a series of <strong>immutable</strong> values, which can be any type.</p>
+<div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;my&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&#39;items&#39;</span><span class="p">,</span> <span class="mi">98475</span><span class="p">,</span> <span class="p">[</span><span class="mi">4</span> <span class="p">,</span> <span class="s">&#39;this&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+</pre></div>
+<p>If you put a list inside a tuple, the contents of the list is mutable.</p>
+<div class="highlight"><pre><span class="k">print</span> <span class="n">x</span>
+
+<span class="k">print</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;newvalue&#39;</span>
+</pre></div>
+<pre><code>  <strong>TypeError: <em>'tuple' object does not support item assignment</em></strong></code></pre>
+
+
+</div>
+<div class='slide '>
+<h1 id="dictionaries">Dictionaries</h1>
+<p>A dictionary is a collection of keys/values</p>
+<div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;language&#39;</span><span class="p">:</span> <span class="s">&#39;Python&#39;</span><span class="p">,</span> <span class="s">&#39;delimiter&#39;</span><span class="p">:</span> <span class="s">&#39;whitespace&#39;</span><span class="p">}</span>
+<span class="k">print</span> <span class="n">x</span><span class="p">[</span><span class="s">&#39;language&#39;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s">&#39;delimiter&#39;</span><span class="p">]</span>
+</pre></div>
+<div class="highlight"><pre><span class="c"># You can also add values to dictionaries like this:</span>
+<span class="n">x</span><span class="p">[</span><span class="s">&#39;extension&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;.py&#39;</span>
+<span class="c"># To see all the keys, just:</span>
+<span class="n">x</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="c"># Or for everything:</span>
+<span class="n">x</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+</pre></div>
+
+
+</div>
+<div class='slide '>
+<h1 id="conditionals">What if/elif/else?</h1>
+<p>Often, you'll need to check that a certain condition is fulfilled. The simplest way to do this is with the <code>if</code> statement.</p>
+<div class="highlight"><pre><span class="n">mybool</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">myint</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">mynothing</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="k">if</span> <span class="n">mybool</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;mybool is true&quot;</span>
+<span class="k">if</span> <span class="n">myint</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">myint</span>
+<span class="k">elif</span> <span class="n">myint</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">myint</span>
+<span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">myint</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">mynothing</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;There&#39;s nothing in mynothing&quot;</span>
+</pre></div>
+
+
+</div>
+<div class='slide '>
+<h1 id="loops">Looping</h1>
+<p>If you need to repeat a task a bunch of times, you want a loop.</p>
+<div class="highlight"><pre><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="c">#This code will execute again and again, pretty much forever</span>
+        <span class="k">print</span> <span class="s">&quot;hello forever&quot;</span>
+</pre></div>
+<p>Lists, Tuples, and Dicts are all "iterable" which means that Python automatically understands how to loop through them.</p>
+<div class="highlight"><pre><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="n">runningtotal</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c">#Let&#39;s figure out the sum of all those numbers</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+        <span class="n">runningtotal</span> <span class="o">=</span> <span class="n">runningtotal</span> <span class="o">+</span> <span class="n">num</span>
+<span class="k">print</span> <span class="n">runningtotal</span>
+</pre></div>
+<p>Which makes it easy to perform an operation on a group of items without dealing with length/counters/other crap.</p>
+
+
+</div>
+<div class='slide '>
+<h1 id="interactive1">Interactive: Let's Write Something</h1>
+<p>Alright, let's try writing a simple program.</p>
+<ol>
+  <li>Store a simple list of items along with their price and print the list</li>
+  <li>Store items, an ID for the items, and their price. Print the list</li>
+</ol>
+<p>Sample data:</p>
+<table>
+  <tr><th>ID</th><th>Name</th><th>Price</th></tr>
+  <tr><td>1</td><td>Widget</td><td>5.00</td></tr>
+  <tr><td>3</td><td>Gizmo</td><td>1.75</td></tr>
+  <tr><td>5</td><td>Gadget</td><td>2.50</td></tr>
+  <tr><td>7</td><td>POS</td><td>0.99</td></tr>
+</table>
+<!--TODO: Figure out what to do as a sample program, maybe work in list slicing --!>
+
+
+</div>
+<div class='slide '>
+<h1 id="sample-code">Sample Code</h1>
+<p>Here's the simple inventory program</p>
+
+<div class="highlight"><pre><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Widget&#39;</span><span class="p">,</span> <span class="s">&#39;Gizmo&#39;</span><span class="p">,</span> <span class="s">&#39;Gadget&#39;</span><span class="p">,</span> <span class="s">&#39;POS&#39;</span><span class="p">]</span>
+<span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5.00</span><span class="p">,</span> <span class="mf">1.75</span><span class="p">,</span> <span class="mf">2.50</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">]</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;Item: </span><span class="si">%s</span><span class="se">\t\t</span><span class="s">Price: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="n">counter</span><span class="p">],</span> <span class="n">prices</span><span class="p">[</span><span class="n">counter</span><span class="p">])</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+
+<p>And here's the more complex version.</p>
+
+<div class="highlight"><pre><span class="n">inventory</span> <span class="o">=</span> <span class="p">[{</span><span class="s">&#39;id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;Widget&#39;</span><span class="p">,</span> <span class="s">&#39;price&#39;</span><span class="p">:</span> <span class="mf">5.00</span> <span class="p">},</span>
+<span class="p">{</span><span class="s">&#39;id&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;Gizmo&#39;</span><span class="p">,</span> <span class="s">&#39;price&#39;</span><span class="p">:</span> <span class="mf">1.75</span> <span class="p">},</span>
+<span class="p">{</span><span class="s">&#39;id&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;Gadget&#39;</span><span class="p">,</span> <span class="s">&#39;price&#39;</span><span class="p">:</span> <span class="mf">2.50</span> <span class="p">},</span>
+<span class="p">{</span><span class="s">&#39;id&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;POS&#39;</span><span class="p">,</span> <span class="s">&#39;price&#39;</span><span class="p">:</span> <span class="mf">0.99</span> <span class="p">}]</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">inventory</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;ID: </span><span class="si">%s</span><span class="se">\t</span><span class="s">Name: </span><span class="si">%s</span><span class="se">\t</span><span class="s">Price: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="s">&#39;price&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+
+</div>
+<div class='slide '>
+<h1 id="loops-next">Loops Continued</h1>
+<p>What if you need to get out of a loop if a certain condition is met? Easy,
+the <code>break</code> statement has your back.</p>
+<p>What about if you want to skip an iteration for some condition? Look no
+further than <code>continue</code>.</p>
+<p>Let's say you don't want to add any numbers that are divisible by 3 and have
+a sum no higher than 25.</p>
+<div class="highlight"><pre><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+<span class="n">runningtotal</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+        <span class="c">#if we go over 25, get out of the loop</span>
+        <span class="k">if</span> <span class="n">runningtotal</span> <span class="o">&gt;</span> <span class="mi">25</span><span class="p">:</span> <span class="k">break</span>
+        <span class="c">#if the number is divisible by 3, skip it</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">continue</span>
+        <span class="n">runningtotal</span> <span class="o">=</span> <span class="n">runningtotal</span> <span class="o">+</span> <span class="n">num</span>
+</pre></div>
+
+
+</div>
+<div class='slide '>
+<h1 id="functions">Functions</h1>
+<p>A function is a block of code that is executed when it is called. Usually
+functions return something. Most of the time they take arguments</p>
+<div class="highlight"><pre><span class="c">#Function definition</span>
+<span class="k">def</span> <span class="nf">myfunction</span><span class="p">():</span>
+        <span class="c">#code to execute</span>
+        <span class="n">myval</span> <span class="o">=</span> <span class="mi">7</span>
+        <span class="c">#return statement</span>
+        <span class="k">return</span> <span class="n">myval</span>
+
+<span class="c">#Function definition with arguments</span>
+<span class="k">def</span> <span class="nf">additionfunction</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="c">#execute x + y and return the result</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</pre></div>
+<div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="n">myfunction</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">myfunction</span><span class="p">()</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="k">print</span> <span class="n">additionfunction</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+
+</div>
+<div class='slide '>
+<h1 id="classes">Classes</h1>
+<p>A class is an object that you can create with attributes (think variables)
+that are specific to it, and </p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">firstarg</span><span class="p">):</span>
+                <span class="n">cls</span><span class="o">.</span><span class="n">arg</span> <span class="o">=</span> <span class="n">firstarg</span>
+                <span class="n">cls</span><span class="o">.</span><span class="n">somevalue</span> <span class="o">=</span> <span class="mi">2984</span>
+
+        <span class="k">def</span> <span class="nf">do_stuff</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">cls</span><span class="o">.</span><span class="n">firstarg</span> <span class="o">*</span> <span class="mi">9</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">c</span><span class="o">.</span><span class="n">do_stuff</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">c</span><span class="o">.</span><span class="n">somevalue</span>
+</pre></div>
+
+
+</div>
+<div class='slide '>
+<h1 id="style">Style: Theoretical</h1>
+<p><code>"If you’re about to take a hundred lines to write what you could in
+  ten, <br/><br/>stop and ask yourself this: what the fuck?"<br/><br/> - Mark,
+  <a href="https://coderoom.wordpress.com/2010/06/23/criminal-overengineering/">Criminal Overengineering</a></code></p>
+<p>Whatever you're writing, keep it short and simple. Python makes it easy to
+do. Don't be ridiculous.</p>
+<p>Also, single-letter variable names: Not ok.</p>
+
+
+</div>
+<div class='slide '>
+<h1 id="style-2">Style: Actual</h1>
+<p>There are several Python style guides, but the most broadly accepted one is
+PEP 8:<br/> <br/><a
+  href="http://www.python.org/dev/peps/pep-0008/">http://www.python.org/dev/peps/pep-0008/</a>
+<br/><br/>Here's the basics for PEP8 style:</p>
+<ul>
+  <li>Use 4 spaces per indentation level</li>
+  <li>Limit lines to 79 characters</li>
+  <li>Separate functions with a blank line, classes with two blank lines</li>
+  <li>Character encoding: UTF-8. Always.</li>
+  <li>Imports should each be on a separate line, all at the top of the file</li>
+  <li>Use docstrings</li>
+</ul>
+
+
+
+</div>
+<div class='slide '>
+<h1 id="pep">But wait</h1>
+<p>Two rules you must remember about PEP8, and are good reasons to break any of
+the other rules.</p>
+<ol>
+  <li>When applying the rule would make the code less readable, even for
+  someone who is used to reading code that follows the rules.</li>
+  <li>To be consistent with surrounding code that also breaks it (maybe for
+  historic reasons) -- although this is also an opportunity to clean up someone
+  else's mess (in true XP style).</li>
+</ol>
+<p>One other one I like to add that isn't PEP8 related, but good to consider: Don't write code you wouldn't want to read.</p>
+
+
+</div>
+<div class='slide '>
+<h1 id="files-references">Files and References</h1>
+<p>Files</p>
+<ul>
+  <li><a href="http://www.addedbytes.com/cheat-sheets/download/python-cheat-sheet-v1.pdf">Python Cheat Sheet</a></li>
+  <li><a href="http://learnpythonthehardway.org/book/">Learn Python The Hard Way</a></li>
+</ul>
+<p>References</p>
+<ul>
+  <li>The <a href="http://www.python.org/doc/">Python Documentation</a></li>
+  <li>Lots of tinkering</li>
+  <li>Sam Lucidi, Python Boss (For comparison, I rate at ~Python Goon)</li>
+</ul>
+
+
+</div>
+<div class='slide '>
+<h1 id="the-end">The End</h1>
+<p>Find the slides later:</p>
+<ul>
+  <li>Slides: <a href="http://www.ryansb.com/static/seminars/python_for_humans/">http://www.ryansb.com/static/seminars/python_for_humans/</a></li>
+</ul>
+
+<p>Find me later:</p>
+<ul>
+  <li> ryansb spam [at] csh [dot] rit [dot] edu (Remember, I hate spam, so make sure to remove it)</li>
+  <li> gplus.to/ryansb </li>
+  <li> fb.me/ryansb </li>
+</ul>
+
+
+</div>
+
+
+<div class='slide '>
+<h1 id=""></h1>
+<p></p>
+
+
+</div>
+
+
+</div><!-- presentation -->
+</body>
+</html>
