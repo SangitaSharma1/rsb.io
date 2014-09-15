@@ -31,6 +31,96 @@ mode        : selfcontained # {standalone, draft}
 
 ---
 
+## Flask
+
+```{python}
+@app.route('/syllabus')
+def syllabus():
+    """
+    Render the syllabus page.
+
+    """
+
+    with open(app_path('schedule.yaml')) as schedule_yaml:
+        schedule = yaml.load(schedule_yaml)
+    return render_template('syllabus.mak', schedule=schedule, name='mako')
+```
+
+---
+
+## More Flask
+
+```{python}
+@app.route('/participants/<year>/<term>/<username>')
+def participant_page(year, term, username):
+    participant_data = {}
+    yaml_dir = app_path('people')
+    participant_yaml = os.path.join(yaml_dir, year, term, username + '.yaml')
+    with open(participant_yaml) as participant_data:
+        participant_data = yaml.load(participant_data)
+
+    return render_template(
+        'participant.mak', name='make',
+        participant_data=participant_data,
+        gravatar=gravatar
+    )
+```
+
+---
+
+## The Template
+
+```
+<div class='jumbotron'>
+    <h1>${participant_data['irc']}</h1>
+    <p>${participant_data['name']}</p>
+</div>
+%if 'github' in participant_data:
+<h2><a href="https://github.com/${participant_data['github']}">GitHub</a></h2>
+%endif
+```
+
+---
+
+## YAML Flat-a-base
+
+- Pull requests for student profiles
+- Course schedule
+- Helpful links
+
+---
+
+## YAML
+
+```{yaml}
+blog: http://gearchicken.com/blog/
+feed: http://gearchicken.com/blog/rss.xml
+forges:
+  - http://github.com/liam-middlebrook
+  - http://bitbucket.org/liam-middlebrook
+irc: loothelion
+name: Liam Middlebrook
+rit_dce: ljm2906
+hw:
+  litreview1: http://gearchicken.com/....
+  quiz1: http://gearchicken.com/blog/....
+  litreview2: http://gearchicken.com/....
+  quiz2: http://gearchicken.com/blog/....
+  bugfix: http://gearchicken.com/blog/....
+github: liam-middlebrook
+twitter: liammiddlebrook
+```
+
+---
+
+## Blog Scraper
+
+  - Count student blog posts in real time
+  - Blog posts & community participation are graded
+  - [Example](http://hfoss-fossrit.rhcloud.com/participants/)
+
+---
+
 ## Curse of success
   - More ...
   - courses
@@ -45,6 +135,21 @@ mode        : selfcontained # {standalone, draft}
   - Available on PyPi
   - Repo per course
   - TravisCI validates YAML
+
+---
+
+## pip install hflossk
+
+  - Faster bootstrapping for students
+  - Automatically add CLI tools to `$PATH`
+
+---
+
+## TravisCI ![hflossk](https://api.travis-ci.org/decause/hflossk.svg)
+
+  - Checks the YAML for every commit
+  - Helps with student onboarding
+  - TODO: test the site itself
 
 ---
 
