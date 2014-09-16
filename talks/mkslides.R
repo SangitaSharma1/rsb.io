@@ -1,3 +1,5 @@
 #!/bin/Rscript
 library("slidify")
-slidify("index.Rmd")
+slidify("go/index.Rmd")
+slidify("zmq/index.Rmd")
+slidify("hflossk/index.Rmd")
