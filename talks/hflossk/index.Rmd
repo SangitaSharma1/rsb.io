@@ -3,7 +3,7 @@ title       : Open Course, Open Source, Openshift
 subtitle    : 
 author      : Ryan S. Brown
 job         : Software Engineer, OpenStack
-framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+framework   : io2012        # {io2012, flowtime, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : github        # tomorrow
 widgets     : []            # {mathjax, quiz, bootstrap}
