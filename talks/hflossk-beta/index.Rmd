@@ -133,8 +133,10 @@ twitter: liammiddlebrook
 
 ## The next generation
   - Available on PyPi
-  - Repo per course
   - TravisCI validates YAML
+  - Repo per course
+  - CLI tool
+  - Even simpler OpenShift deploys
 
 ---
 
@@ -142,6 +144,12 @@ twitter: liammiddlebrook
 
   - Faster bootstrapping for students
   - Automatically add CLI tools to `$PATH`
+
+---
+
+## IRC Hooks
+
+  - Show progress in #rit-foss IRC channel
 
 ---
 
@@ -153,6 +161,31 @@ twitter: liammiddlebrook
 
 ---
 
+## Using `tox`
+
+```{ini}
+[tox]
+minversion = 1.6
+envlist = py27,py33,pep8
+```
+
+```{yaml}
+language: python
+install: pip install tox
+script: tox
+```
+
+
+---
+
+## Command Line
+
+  - `hflossk new`
+  - `hflossk run`
+  - `hflossk openshift`
+
+---
+
 ## Magic OpenShift
   - Hide complexity
   - Add Openshift boilerplate
@@ -161,8 +194,37 @@ twitter: liammiddlebrook
 
 ---
 
-## The future
+## Talking to `git`
+
+```{python}
+def is_dirty():
+    """Check for uncommitted changes. True if dirty."""
+    repo = git.Repo(os.getcwd())
+    s = git.status(repo)
+    return any(s.staged.values() + [s.unstaged])
+```
+
+---
+
+## Branching Out
+
+```{python}
+with TempBranch(branch, repo, delete=True):
+    for name, body in openshift_files.items():
+        with open(name, 'w') as f:
+            f.write(body.get("contents", ""))
+        repo.stage(fname)
+    repo.do_commit("Commit openshift files")
+```
+
+---
+
+## The Future
   - Get more feedback, iterate!
   - Other providers
   - Better onboarding
   - Caching + speed improvements
+
+---
+
+## Q & A
