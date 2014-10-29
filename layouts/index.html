@@ -5,13 +5,13 @@
     <div>
       <h2>I write</h2>
       <ul class="undecorated">
-        {{ range where .Data.Pages.ByWeight "Section" "projects"}}
+        {{ range where .Data.Pages.ByWeight "Section" "projects" | first 4 }}
           {{ .Render "li" }}
         {{ end }}
       </ul>
       <h2>I work</h2>
       <ul class="undecorated">
-        {{ range where .Data.Pages "Section" "jobs"}}
+        {{ range where .Data.Pages "Section" "jobs" }}
           {{ .Render "li" }}
         {{ end }}
       </ul>
