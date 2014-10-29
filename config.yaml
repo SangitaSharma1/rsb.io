@@ -3,3 +3,8 @@ baseurl: http://rsb.io
 languageCode: en-us
 title: Ryan Scott Brown
 theme: squairy_light
+
+indexes:
+    tag: tags
+    category: categories
+    talk: talks
