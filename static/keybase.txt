@@ -1,0 +1,69 @@
+==================================================================
+https://keybase.io/ryansb
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://rsb.io
+  * I am ryansb (https://keybase.io/ryansb) on keybase.
+  * I have a public key with fingerprint EBB5 446E B73B F488 426E  24D2 0BAB B8A1 7907 CCDB
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "ebb5446eb73bf488426e24d20babb8a17907ccdb",
+            "host": "keybase.io",
+            "key_id": "0babb8a17907ccdb",
+            "uid": "52cb2e49dad1350f6ef0cb570b248800",
+            "username": "ryansb"
+        },
+        "service": {
+            "hostname": "rsb.io",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1414595529,
+    "expire_in": 157680000,
+    "prev": "12ef15f0a36a283bc3415f1da5be0a48faa537395614ecd91cdfcdb470a1880a",
+    "seqno": 5,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1
+
+owGbwMvMwMTIvXrHwkr2M7cZTx94lcQQEsh8rlopKT+lUsmqWik7FUylZealpxYV
+FGXmlShZKaUmJZmamJilJpkbJ6WZWFiYGJmlGpmkGBkkJSYlWSQamlsamCcnpyQp
+6Shl5BeDdACNSUosTtXLzAeKATnxmSlAUSzqS8ESpkbJSUapJpYpiSmGxqYGaWap
+aQbJSabmBklGQOsMDEAKi1OL8hJzU4GqiyoT84qTlGp1lIBiZZnJqSAXgyyGyRcn
+QSwuKMovyU/OzwGKZZSUFFiBtJRUFoDUlKcmxUN1xydl5qUA/QvUUJZaVJyZn6dk
+ZQhUmVySCTLO0MTQxNTS1NTIUkcptaIgsyg1PhOkwtTcDOgyAwOQNallQCMNjVLT
+DE3TDBKNzRKNLIyTko1NgFzDlETTpFSDRBOLtMREU2NzY0tTM0OT1OQUS8PklDRg
+IJiYGyQaAj2ZqATyT2FevpKVKdCZielAI4sz0/MSS0qLUpVquTqZZFgYGJkY2FiZ
+QFHGwMUpAItI5Y/8/8Nbsz40c38KbGXhWX/4xXmXBU1LeS6Y1nY+XcyxKp3t/OGP
+H+amZK9LEzR6eFey5rSgnHb3SQZdzizLXb0WL7S3n4jYM3Pe/9b3tgoGmkf59ty4
+mOyo4LFfzvZBuTgf9+1FR5aK75OeIr3k1IdJC3a6ppu2Loov/1ncKT3lYgqnkUKi
+yYTJib4VDqlNSQ+uLC1IeZTW2bH9MH8P72uNb82z9+UWvtg0y6OnzCC8Pyfu4bWN
+OYdtVAR3/zfXUl7vYNK3oKXgx8Gt2eqF+Y+3fDjnceVeVHUhy5MwnT9OLp+U72YY
+fVoQuehb6VWzfadWOOx3u2YR6N54J+XjTVOu4CM/JmkWqIcWPShL1brpen/vnNwV
+Bxt56hR4Gy4uXLpfSqPsevG03N1qEU9u7f956bhy3qHb5rEey74qR50/JCj87l3G
+PAHjrscOLql3ps75suH8NiWrY1N0swsu8NxR+1i+N1f0wDpd/zkb2RJORvfk5PGf
+8Jd0zdXcc+/CWn/ZbXKVW2Z/5r3la/A6wWmyegzjwamR0c3rVyt17ws5Uj+bL/Tv
+lx1vTx169VKSrf9gsHCw/YW3Lj/CCvI+eu3k6ePdpR4+nT91Y5P8I88Sl+eyi1Um
+L9u7+eKiLXd4WaPSL2/U0Oq5k7tlv87GDV+iwi6duT7f0jIzpuxI/kvDGRW8FYui
+zy2W2zhtf96HjSeP3fnUFKwqsTp2kYuIohoA
+=WqvW
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/ryansb
+
+==================================================================
