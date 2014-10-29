@@ -5,75 +5,13 @@
     <div>
       <h2>I write</h2>
       <ul class="undecorated">
-        <li class="project">
-        <a href="https://github.com/hudl/fargo"><h3>Fargo</h3></a>
-        <div class="description">
-          <p>
-          Fargo is a Go client for Netflix
-          <a href="https://github.com/Netflix/Eureka">Eureka</a>, a service
-          discovery system. The fargo library is intended help distributed Go
-          applications discover shared service locations such as databases,
-          load balancers, or caches.
-          </p>
-        </div>
-        </li>
-        <li class="project">
-        <a href="https://github.com/ryansb/spacehub"><h3>Spacehub</h3></a>
-        <div class="description">
-          <p>
-          Built a Pyramid + Ember.js webapp on OpenShift to mirror
-          projects from disparate sources to Github. Handles tarball,
-          SVN, and Mercurial sources. Ranked among the global top 10
-          for NASA Space Apps Challenge.
-          </p>
-        </div>
-        </li>
-        <li class="project">
-        <a href="https://github.com/oddshocks/pythong"><h3>Pythong</h3></a>
-        <div class="description">
-          <p>
-          Wrote a package to help developers properly package their
-          Python projects for distribution on PyPi.
-          </p>
-        </div>
-        </li>
-        <li class="project">
-        <a href="https://github.com/ryansb/zsh-boto"><h3>ZSH Boto</h3></a>
-        <div class="description">
-          <p>
-          Created a set of tab-completion scripts for ZSH that make
-          command-line administration of S3 and Elastic Load Balancer
-          more user friendly.
-          </p>
-        </div>
-        <p></p>
-        </li>
-      </ul>
-      <h2>I contribute</h2>
-      <ul class="undecorated">
-        <li class="project">
-        <a href="https://github.com/ryansb/fedmsg"><h3>Fedmsg</h3></a>
-        <div class="description">
-          <p>
-          Built an IRC bot using Twisted to subscribe to ZeroMQ topics
-          and display notifications in IRC.
-          </p>
-        </div>
-        </li>
-        <li class="project">
-        <a href="https://github.com/boto"><h3>Boto</h3></a>
-        <div class="description">
-          <p>
-          Contributed to the open source Python interface to Amazon Web
-          Services. Added support for uploading and executing scripts
-          automatically on new instances.
-          </p>
-        </div>
-        </li>
+        {{ range where .Data.Pages.ByWeight "Section" "projects"}}
+          {{ .Render "li" }}
+        {{ end }}
       </ul>
       <h2>I work</h2>
       <ul class="undecorated">
-        {{ range first 10 .Data.Pages }}
+        {{ range where .Data.Pages "Section" "jobs"}}
           {{ .Render "li" }}
         {{ end }}
       </ul>
