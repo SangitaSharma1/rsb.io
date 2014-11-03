@@ -1,4 +1,4 @@
-PRESOS := go zmq hflossk
+PRESOS := go zmq hflossk open_source_way
 all:
 	./mkslides.R
 	@ $(foreach var,$(PRESOS),\
