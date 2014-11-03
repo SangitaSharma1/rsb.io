@@ -1,0 +1,60 @@
+---
+title       : The Open Source Way
+subtitle    : 
+author      : Ryan S. Brown
+job         : Openstack Contributor
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : github        # tomorrow
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+---
+
+## Projects
+
+1. Firefox, emacs, vim, git, GNOME, KDE
+1. Perl, Python, Ruby, R, C, Lua, Java, Rust, Go, Haskell
+1. MySQL, MariaDB, PostgreSQL, and MongoDB
+1. NGinX, BIND, Memcached, CouchDB, RabbitMQ
+
+---
+
+## Open Exchange
+
+Learn from others
+
+Teach others
+
+Upon the shoulders of giants
+
+---
+
+## Participation & Community
+
+Bigger groups can solve bigger problems
+
+---
+
+## Rapid Prototyping
+
+1. Experiment
+1. Learn
+1. Share
+
+---
+
+## License
+
+Gnu Public License
+
+MIT License
+
+Apache License
+
+BSD License
+
+Creative Commons
+
+---
+
+## End
