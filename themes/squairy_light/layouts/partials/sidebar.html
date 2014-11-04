@@ -18,12 +18,11 @@
       </p>
       <div>
       <ul class="contact-methods undecorated">
+        {{ range where .Data.Pages.ByWeight "Section" "presentations" | first 2 }}
         <li class="contact-method">
-        <i class="icon-terminal"></i> <a href="/talks/go">Golang Talk</a>
+        <i class="icon-terminal"></i> <a href="{{ .Params.homepage }}">{{ .Params.name }} Talk</a>
         </li>
-        <li class="contact-method">
-        <i class="icon-terminal"></i> <a href="/talks/zmq">ZMQ Talk</a>
-        </li>
+        {{ end }}
         <li class="contact-method">
         <i class="icon-terminal"></i> <a href="/presentations">All Talks</a>
         </li>
