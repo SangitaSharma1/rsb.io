@@ -18,9 +18,9 @@
       </p>
       <div>
       <ul class="contact-methods undecorated">
-        {{ range where .Data.Pages.ByWeight "Section" "presentations" | first 2 }}
+        {{ range .Site.Sections.presentations | first 2}}
         <li class="contact-method">
-        <i class="icon-terminal"></i> <a href="{{ .Params.homepage }}">{{ .Params.name }} Talk</a>
+        <i class="icon-terminal"></i> <a href="{{ .Page.Params.homepage }}">{{ .Page.Params.name }} Talk</a>
         </li>
         {{ end }}
         <li class="contact-method">
