@@ -2,6 +2,7 @@
 homepage: /talks/zmq
 name: ZeroMQ
 talks: ["Tools"]
+weight: 10
 ---
 
 An explanation of ZeroMQ for programmers who have already used sockets or
