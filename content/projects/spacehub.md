@@ -1,5 +1,5 @@
 ---
-weight: 6
+weight: 11
 name: Spacehub
 homepage: https://github.com/ryansb/spacehub
 ---

@@ -1,5 +1,5 @@
 ---
-weight: 5
+weight: 6
 name: Fargo
 homepage: https://github.com/hudl/fargo
 ---
