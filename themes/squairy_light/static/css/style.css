@@ -3,7 +3,7 @@
   /*padding-right: 20%;*/
 }
 
-.projects {
+.projects, .posts {
   padding-left: 10%;
 }
 
@@ -95,10 +95,23 @@ a:visited {
   font-weight: bold;
 }
 
+.posts pre {
+  font-weight: bold;
+  font-family: monospace;
+}
 
+.posts blockquote {
+  font-weight: bold;
+}
+
+.posts .postdate { text-align: right; }
+
+@media (max-width : 1000px) {
+  .readtime { visibility: hidden; }
+}
 @media (max-width : 480px) {
   .contact { padding-left: 10%; }
-  .projects { padding-left: 10%; }
+  .projects, .posts { padding-left: 10%; }
   .padding-right-5 { padding-right: 0%; } 
   .container { width: 400px; padding-right: 10%; }
   .pure-u-1-5 { width: 400px; }
