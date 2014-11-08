@@ -1,6 +1,5 @@
 {{ partial "header.html" . }}
-<div class="pure-u-3-5 faint-left-border">
-  <div class="posts">
+<div class="pure-u-3-5 posts faint-left-border">
     <h1>Posts <i class="icon-comment"></i></h1>
     <hr/>
     {{ range .Data.Pages.ByDate.Reverse }}

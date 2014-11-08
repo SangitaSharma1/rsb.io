@@ -16,9 +16,16 @@
         {{ end }}
       </ul>
       <h2>Writing</h2>
-      <ul class="undecorated">
-        {{ range where .Data.Pages.ByWeight "Section" "posts" | first 2 }}
+      <ul class="undecorated postlist">
+        {{ range where .Data.Pages.ByWeight "Section" "external" | first 2 }}
+        <li>
           {{ .Render "li" }}
+        </li>
+        {{ end }}
+        {{ range where .Data.Pages.ByWeight "Section" "posts" | first 2 }}
+        <li>
+          {{ .Render "li" }}
+        </li>
         {{ end }}
       </ul>
     </div>
