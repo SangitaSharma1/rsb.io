@@ -7,6 +7,6 @@ jobtitle: "Software Engineer"
 
 I contribute to [OpenStack Orchestration (Heat)][os], a FOSS cloud
 orchestration tool that integrates with Openstack networking, compute, and
-monitoring systems. I also package for RDO/RHOS.
+storage systems.
 
 [os]: https://wiki.openstack.org/wiki/Heat
