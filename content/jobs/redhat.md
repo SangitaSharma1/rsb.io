@@ -5,8 +5,8 @@ homepage: "http://www.redhat.com/en"
 jobtitle: "Software Engineer"
 ---
 
-Contributed [OpenStack Orchestration (Heat)][os], a FOSS cloud orchestration
-tool that integrates with Openstack networking, compute, and monitoring
-systems.
+I contribute to [OpenStack Orchestration (Heat)][os], a FOSS cloud
+orchestration tool that integrates with Openstack networking, compute, and
+monitoring systems. I also package for RDO/RHOS.
 
 [os]: https://wiki.openstack.org/wiki/Heat
