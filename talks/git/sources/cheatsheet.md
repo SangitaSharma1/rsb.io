@@ -15,6 +15,6 @@
 	# add a file to your last commit
 	$ git commit -m "A commit"
 	$ git add file_i_forgot.txt
-	$ git commit --ammend
+	$ git commit --amend
 	# see the last 5 days of activity on the repository, concisely
 	$ git log --since=5.days --oneline
