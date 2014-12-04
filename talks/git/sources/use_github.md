@@ -47,15 +47,3 @@
 	   9457e38..dbeb245  master -> feature_name
 
 improve someone else's repo, in just one minute
-
----
-
-# remember that cheap branching?
-
----
-
-![](img/pull_request.png)
-
----
-
-# cheap contributions

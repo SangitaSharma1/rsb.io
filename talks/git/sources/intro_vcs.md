@@ -4,27 +4,18 @@ Git Crash Course
 ---
 
 # Git is...
+* a collection of commits that represent code changes
 * distributed (redundant)
 * flexibile
-* network independent
-* a collection of "commits" that represent changes to code
-
----
-
-# Git is great for...
-* massive projects (linux kernel...)
-* fast and cheap branching
-* speed (almost everything is local)
-* working on planes, trains, and automobiles
+* network optional
 
 ---
 
 # a commit is...
 * snapshot, not a diff
+* referred to by a checksum (not a name)
 * takes up more space, but bits are cheap
-* acts almost like a mini filesystem
 * store links to files that haven't changed
-* refer to commits by checksums (not names)
 
 ---
 

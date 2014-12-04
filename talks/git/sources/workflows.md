@@ -13,7 +13,7 @@
 
 # git-flow
 
-my personal favorite, kinda
+my personal favorite
 
 ![](img/git_flow.png)
 

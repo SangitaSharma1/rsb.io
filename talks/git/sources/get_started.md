@@ -1,29 +1,7 @@
 # getting set up
 	!bash
-	git config user.name "Your Name"
-	git config user.email "you@your.site"
-
----
-
-# start a project
-	!bash
-	$ mkdir mynewproject
-	$ cd mynewproject
-	$ git init
-	 Initialized empty Git repository in 
-	 /home/ryansb/mynewproject/.git/
-	$ vim README
-	$ git status
-	 # Initial commit
-	 #
-	 # Untracked files:
-	 #   (use "git add <file>..." to include in what will
-	 #   be committed)
-	 #
-	 #       README
-	 nothing added to commit but untracked files present
-	 (use "git add" to track)
-	$ git add README
+	git config --global user.name "Your Name"
+	git config --global user.email "you@your.site"
 
 ---
 
@@ -99,10 +77,3 @@ Protips:
 	$ git commit -am "Fixed up grammar in hello.py"
 	[master 01ee7f3] Fixed up grammar in hello.py
 	 1 files changed, 1 insertions(+), 1 deletions(-)
-
----
-
-# saving keystrokes
-* sometimes add -> commit gets annoying
-* the '-a' option stages all modifications
-* but make sure you REALLY want to commit everything
