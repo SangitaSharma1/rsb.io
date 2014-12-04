@@ -4,6 +4,7 @@
 
 # resources
 
+* <a href="http://gitready.com">gitready.com</a>
 * <a href="http://gitref.org">gitref.org</a>
 * <a href="http://progit.org">progit.org</a>
 * <a href="http://git-scm.com">git-scm.com</a>
