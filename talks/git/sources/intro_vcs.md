@@ -11,6 +11,11 @@ Git Crash Course
 
 ---
 
+# can be a little intimidating
+![](img/githater.png)
+
+---
+
 # a commit is...
 * snapshot, not a diff
 * referred to by a checksum (not a name)
