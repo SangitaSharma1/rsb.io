@@ -3,11 +3,11 @@ ESC := esc
 HUGO := hugo
 PORT := 8080
 
-.PHONY: all gobin static clean
+.PHONY: all server static clean
 
-all: static gobin
+all: static server
 
-gobin: main.go
+server: static main.go
 	$(ESC) -o content.go -pkg main -prefix public public
 	$(GOCC) build -o rsbio
 
