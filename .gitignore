@@ -42,3 +42,8 @@ talks/*/index.html
 talks/libraries
 talks/*/libraries
 .nojekyll
+
+# golang static site server files
+content.go
+main.go
+rsbio
