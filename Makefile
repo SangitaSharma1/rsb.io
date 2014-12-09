@@ -3,9 +3,12 @@ ESC := esc
 HUGO := hugo
 PORT := 8080
 
-.PHONY: all server static clean
+.PHONY: all server static clean deploy
 
 all: static server
+
+deploy:
+	boto-rsync --grant public-read public/ s3://rsb.io/
 
 server: static main.go
 	$(ESC) -o content.go -pkg main -prefix public public
