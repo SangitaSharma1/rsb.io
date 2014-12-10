@@ -8,7 +8,7 @@ PORT := 8080
 all: static server
 
 deploy:
-	boto-rsync --grant public-read public/ s3://rsb.io/
+	boto-rsync --delete --grant public-read public/ s3://rsb.io/
 
 server: static main.go
 	$(ESC) -o content.go -pkg main -prefix public public
