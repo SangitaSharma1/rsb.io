@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GDI Python - Class 1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="slides.css" rel="stylesheet">
+  </head>
+  <body>
+    <textarea id="source">
+layout: true
+class: middle
+---
+
+# Girl Develop It - Rochester
+---
+
+# Agenda
+
+1. Introductions
+1. Your first Python!
+1. How to find help
+1. Building on other code
+1. Draw something, your choice
+1. Control structures (if this then that)
+1. More finding help
+
+.footnote[Stop me any time for questions]
+
+---
+layout: false
+.left-column[
+  ## About me
+]
+.right-column[
+  I write Python full-time at Red Hat, and have done it as a hobby for a long time.
+]
+---
+layout: false
+.left-column[
+  ## About me
+  ## About you
+]
+.right-column[
+  .fade[I write Python and bake artisan bread.]
+
+  You want to learn Python, your name is _____ and:
+
+  1. Something you want to learn (other than Python)
+  1. Why you want to learn Python
+  1. One of your hobbies
+  1. Worst ice-breaker question/game you've ever played
+]
+---
+layout: false
+.left-column[
+  ## About me
+  ## About you
+  ## About this class
+]
+.right-column[
+  .fade[I write Python and bake artisan bread.
+
+  You want to learn Python, your name is _____ and:
+
+  1. Something you want to learn (other than Python)
+  1. Why you want to learn Python
+  1. One of your hobbies
+  1. Worst ice-breaker question/game you've ever played]
+
+  We're going to start with drawing things as a way to teach you programming concepts.
+]
+---
+
+# Rules of the Road
+
+.large[
+1. Every question is important
+1. Help each other
+1. Ask for help
+1. .red[Have fun!]
+]
+
+---
+
+# Learning to program
+
+1. Lots of very helpful people from the internet (StackOverflow, mailing lists, IRC)
+1. Patience, patience, patience
+1. Pick it back up again the next day
+
+---
+class: center, middle
+
+# Day 1: Drawing with Turtles
+
+Let's open IDLE
+
+---
+class: center, middle
+# The shell is an interpreter
+
+.large[Input -> Computer -> Output]
+
+You say something, the computer translates your idea and responds
+
+---
+class: middle
+# Is this thing on?
+
+```
+>>> print("Hi there!")
+
+>>> len("Python!")
+
+>>> max(5,6)
+
+>>> 5+6
+
+>>> 5/2
+
+>>> round(4.2)
+
+>>> newProgrammer = "you"
+>>> print(newProgrammer)
+```
+---
+class: middle
+# Yes!
+
+.no-margins[
+`>>> print("Hi there!")`
+
+.red[Hi there!]
+
+`>>> len("Python!")`
+
+.red[7]
+
+`>>> max(5,6)`
+
+.red[ 6 ]
+
+`>>> 5+6`
+
+.red[11]
+
+`>>> 5/2`
+
+.red[2.5]
+
+`>>> round(4.2)`
+
+.red[4]
+
+`>>> newProgrammer = "you"`
+`>>> print(newProgrammer)`
+
+.red[you]
+]
+---
+class: middle
+
+# Put your work somewhere
+
+.large[File -> New File]
+
+```
+import turtle
+
+wn = turtle.Screen()
+
+alex = turtle.Turtle()
+alex.forward(100)
+alex.left(90)
+alex.forward(100)
+
+wn.exitonclick()
+```
+---
+class: middle center
+
+# Save as
+
+.large[Your file *cannot* be named turtle.py]
+
+---
+class: middle center
+# Go baby go
+
+.large[Run -> Run module]
+
+Or F5, if you like less clicking
+
+---
+class: middle
+
+# Bam, first script done!
+
+---
+class: middle
+
+# Interpreter v. Script
+
+Interpreter is great for testing things out, but scripts can be rerun, tweaked, and run again.
+
+---
+class: middle
+
+```
+import turtle
+
+wn = turtle.Screen()
+
+alex = turtle.Turtle()
+alex.forward(100)
+alex.left(90)
+alex.forward(100)
+
+wn.exitonclick()
+```
+---
+class: middle
+
+# Code reuse
+
+```
+import turtle
+
+if __name__ == "__main__":
+    wn = turtle.Screen()
+
+    alex = turtle.Turtle()
+    alex.forward(100)
+    alex.left(90)
+    alex.forward(100)
+
+    wn.exitonclick()
+```
+
+---
+class: middle
+
+# Play time - 5 minutes
+
+1. Ask questions
+1. Add a movement
+1. Change some numbers
+1. Print your name
+1. Help your neighbor
+
+---
+class: middle center
+
+.large[
+  Draw a square
+
+  Draw a pentagon
+]
+
+---
+class: middle
+# One way to draw a pentagon
+
+```
+alex = turtle.Turtle()
+alex.forward(150)
+alex.left(72)
+alex.forward(150)
+alex.left(72)
+alex.forward(150)
+alex.left(72)
+alex.forward(150)
+alex.left(72)
+alex.forward(150)
+alex.left(72)
+```
+
+---
+class: middle center
+
+# Loops go around and around
+
+---
+class: middle
+
+# Print three "programs"
+
+```
+for num in [1, 2, 3]:
+    print("program", num)
+```
+
+---
+class: middle
+
+# It's hip to be square
+
+```
+alex = turtle.Turtle()
+for side in [1, 2, 3, 4]:
+    alex.forward(100)
+    alex.left(90)
+```
+
+---
+class: middle center
+
+# Now draw a pentagon in a loop
+
+---
+class: middle
+
+# Looping a pentagon
+
+```
+alex = turtle.Turtle()
+for side in [1, 2, 3, 4, 5]:
+    alex.forward(100)
+    alex.left(72)
+```
+
+    </textarea>
+    <script src="remark-latest.min.js"></script>
+    <script>var slideshow = remark.create();</script>
+  </body>
+</html>
