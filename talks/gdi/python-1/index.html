@@ -32,7 +32,7 @@ layout: false
   ## About me
 ]
 .right-column[
-  I write Python full-time at Red Hat, and have done it as a hobby for a long time.
+  I write Python and bake artisan bread.
 ]
 ---
 layout: false
@@ -325,6 +325,125 @@ for side in [1, 2, 3, 4, 5]:
     alex.forward(100)
     alex.left(72)
 ```
+---
+class: middle
+
+# Shortcut: range
+
+```
+alex = turtle.Turtle()
+for side in range(5):
+    alex.forward(100)
+    alex.left(72)
+```
+
+`range(5)` and `[0, 1, 2, 3, 4]` are identical
+---
+class: middle
+
+# Add a side!
+
+Now let's try to draw a hexagon
+
+---
+class: middle
+
+# Math class reminder
+
+(5 + 3) * 2
+
+5 + 3 * 2
+
+---
+class: middle
+
+# Draw your hexagon
+
+How much did you have to change?
+
+---
+class: middle
+
+# Can we do better?
+
+Every shape's angles add up to 360 degrees
+
+We only have to write the angle once, and the number of sides
+
+---
+class: middle
+
+```
+for side in range(number_of_sides):
+    alex.forward(100)
+    alex.left(angle)
+```
+
+---
+class: middle
+
+```
+number_of_sides = <something>
+angle = <something>
+for side in range(number_of_sides):
+    alex.forward(100)
+    alex.left(angle)
+```
+
+---
+class: middle
+
+```
+number_of_sides = 6
+angle = 360 / 6
+for side in range(number_of_sides):
+    alex.forward(100)
+    alex.left(angle)
+```
+
+---
+class: middle
+
+```
+number_of_sides = 6
+angle = 360 / number_of_sides
+for side in range(number_of_sides):
+    alex.forward(100)
+    alex.left(angle)
+```
+
+---
+class: middle
+
+# Now an octagon
+
+```
+number_of_sides = 8
+angle = 360 / number_of_sides
+for side in range(number_of_sides):
+    alex.forward(100)
+    alex.left(angle)
+```
+
+We just needed to change the *value* of the variable
+
+---
+class: middle center
+
+# Activity time
+
+Let's learn to do more with turtle.
+
+.large[Google "python turtle 3.4"]
+
+---
+class: middle center
+
+# 10 minutes
+
+.large[Teach yourself as many new features as you want]
+
+When your neighbor pauses, share your new function with them
 
     </textarea>
     <script src="remark-latest.min.js"></script>
