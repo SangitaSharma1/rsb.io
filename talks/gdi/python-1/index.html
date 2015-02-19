@@ -487,6 +487,112 @@ Draw a spiral
 
 Draw two squares
 
+---
+class: middle
+
+# True or False
+
+Just like an exam question. You ask "Is a dog a chicken?" and Python answers
+
+```
+>>> "dog" == "chicken"
+False
+```
+
+```
+>>> "dog" == "dog"
+True
+```
+
+---
+class: middle
+
+# Decisions in Code
+
+`True` and `False` can be used to make decisions
+
+```
+if animal == "dog":
+    print("Woof")
+else:
+    print("Some other sound")
+```
+
+---
+class: middle
+
+```
+if animal == "dog":
+    print("Woof")
+elif animal == "cat":
+    print("Meow")
+elif animal == "cow":
+    print("Moo")
+else:
+    print("Some other sound")
+```
+
+---
+class: middle
+
+```
+for num in range(5):
+    if num % 2:
+        alex.color("green")
+    else:
+        alex.color("red")
+    alex.forward(100)
+    alex.left(72)
+```
+
+---
+class: middle
+
+# Recyling your code
+
+You may notice, a lot of the code we've written has similarities
+
+- Changing values
+- Repeating things
+- Sharing code with others
+
+---
+class: middle center
+
+# Share functionality by defining functions
+
+---
+class: middle
+
+# Simple function
+
+```
+def drawSquare():
+    for num in range(4):
+        alex.forward(100)
+        alex.left(90)
+
+drawSquare()
+alex.up()
+alex.forward(200)
+alex.down()
+drawSquare()
+```
+---
+class: middle
+
+# More options
+
+```
+def drawSquare(side):
+    for num in range(4):
+        alex.forward(side)
+        alex.left(90)
+drawSquare(100)
+drawSquare(200)
+drawSquare(300)
+```
+
     </textarea>
     <script src="remark-latest.min.js"></script>
     <script>var slideshow = remark.create();</script>
