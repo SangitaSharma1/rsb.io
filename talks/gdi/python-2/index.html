@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GDI Python - Class 1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="slides.css" rel="stylesheet">
+  </head>
+  <body>
+    <textarea id="source">
+layout: true
+class: middle
+---
+
+# Girl Develop It - Rochester
+---
+
+# Agenda
+
+1. Introductions (again)
+1. Install Python (just checking)
+1. Brief reviews
+1. More operators
+1. Data types
+1. Data structures
+1. Review of if/else
+1. Functions vs. Methods
+1. Make your own class
+
+.footnote[Stop me any time for questions]
+
+---
+
+# Rules of the Road
+
+.large[
+1. Every question is important
+1. Help each other
+1. Ask for help
+1. .red[Have fun!]
+]
+
+---
+# About you
+  You want to learn Python, your name is _____ and:
+
+  1. Something you want to learn (other than Python)
+  1. Why you want to learn Python
+  1. One of your hobbies
+  1. Worst ice-breaker question/game you've ever played
+
+---
+class: center, middle
+
+# Programming
+
+.large["The computer will do exactly as you tell it. Not exactly as you mean."]
+
+---
+class: center, middle
+
+# Installing Python
+
+.large[http://continuum.io/downloads]
+
+1. Download Python for your operating system
+1. .red[Make sure to download version 3.4]
+1. Click on the installer after it's downloaded to install
+
+---
+class: middle
+
+# Quick Review
+
+---
+class: middle
+
+Assign a variable?
+---
+class: middle
+
+Perform an action multiple times?
+---
+class: middle
+
+Why does indentation matter?
+
+What's a block?
+---
+class: middle
+
+Define a function?
+
+Call a function?
+
+---
+class: middle
+
+What's an argument? How do you set a default?
+
+---
+class: middle
+
+Ok, so you know what the interpreter is for and what a script is.
+
+Now how do I solve big problems?
+
+---
+class: middle
+
+# We'll get to that
+
+You'll need more tools! Python has classes to help represent more complex problems (and solutions).
+
+Before we can tackle classes, let's lay a bit more groundwork
+
+---
+class: middle
+
+# Mathematical Operators
+
+.medium[
+`+`
+
+`-`
+
+`/`
+
+`//`
+
+`*`
+
+`**`
+
+`%`
+]
+
+---
+class: middle
+
+# Mathematical Operators
+
+.medium[
+`+` addition
+
+`-` subtraction
+
+`/` division
+
+`//`
+
+`*` multiplication
+
+`**`
+
+`%` modulus
+]
+
+---
+class: middle
+
+```
+>>> 5/2
+2.5
+
+>>> 5//2
+2
+```
+
+---
+class: middle
+
+.large[`==`]
+
+```
+if 2 == 3:
+    print("Math is really broken right now. Try later.")
+else:
+    pass
+```
+
+---
+class: middle
+
+# Comparison Operators
+
+`in`
+
+`==`
+
+`!=`
+
+`<=`
+
+`>=`
+
+---
+class: middle
+
+# Break
+
+Try the comparison operators we've learned so far
+
+---
+class: middle
+
+# Types
+
+Data in Python carries information about itself and is stored differently
+
+```
+if "0" == 0:
+    print("Hrm...type coercion")
+else:
+    print("Ok")
+```
+
+Why does this code print "Ok"?
+
+---
+class: middle
+
+# Find the type
+
+Python can tell you what something is!
+
+```
+>>> type(0)
+<class 'int'>
+```
+
+Now try with some other data!
+
+- 0.0
+- 0x13
+- "Hello"
+- 'h'
+- """h"""
+
+---
+class: middle
+
+# Strings
+
+A string is a series of stored characters.
+
+You've been using them already in Turtle for colors!
+
+String tips:
+
+`"hello" + "there"`
+
+`"hello" + " there"`
+
+`"hello" * 10`
+
+`print("hello\n" * 10)`
+
+```
+for letter in "hello":
+    print(letter)
+```
+
+```
+"Hello {}, how are you".format("Alex")
+```
+---
+class: middle
+
+# But wait
+
+```
+>>> "hello" * 10
+hellohellohellohellohellohellohellohellohellohello
+>>> "hello" + 10
+```
+
+.red[```
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: Can't convert 'int' object to str implicitly"</stdin>"
+```]
+
+`type(10)`
+
+`type(str(10))`
+
+---
+class: middle
+
+# Fixing type errors
+
+```
+"Hello " + str(10)
+```
+
+---
+class: middle
+
+# Lists
+
+```
+>>> shopping = ["milk", "eggs"]
+>>> shopping[0]
+```
+
+A list is a collection of items of any type you like (yes, including other lists).
+
+You can also modify and combine lists!
+
+How do you think you do that?
+
+---
+class: middle
+
+# More About Lists
+
+.red[```
+>>> shopping + "bread"
+```]
+
+```
+>>> shopping + ["bread"]
+["milk", "eggs", "bread"]
+>>> print(shopping)
+["milk", "eggs"]
+
+>>> shopping.append("bread")
+>>> print(shopping)
+["milk", "eggs", "bread"]
+```
+
+```
+>>> shopping.remove("eggs")
+>>> print(shopping)
+["milk", "bread"]
+>>> shopping.remove("popsicles")
+```
+
+---
+class: middle
+
+# Conditionals with lists
+
+```
+>>> if "bread" in shopping:
+>>>     print("We need bread!")
+```
+
+---
+class: middle
+
+# Questions?
+
+.footnote[These slides are available at [rsb.io/talks/gdi/python-2](http://rsb.io/talks/gdi/python-2/)]
+
+    </textarea>
+    <script src="remark-latest.min.js"></script>
+    <script>var slideshow = remark.create();</script>
+  </body>
+</html>
