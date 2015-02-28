@@ -20,11 +20,12 @@ class: middle
 1. Install Python (just checking)
 1. Brief reviews
 1. More operators
+1. Review of if/else
 1. Data types
 1. Data structures
-1. Review of if/else
 1. Functions vs. Methods
 1. Make your own class
+1. Class project!
 
 .footnote[Stop me any time for questions]
 
@@ -185,6 +186,8 @@ class: middle
 
 `in`
 
+`is`
+
 `==`
 
 `!=`
@@ -235,6 +238,14 @@ Now try with some other data!
 - "Hello"
 - 'h'
 - """h"""
+- None
+
+---
+class: middle
+
+# None is special
+
+`NoneType`
 
 ---
 class: middle
@@ -334,6 +345,22 @@ class: middle
 >>> print(shopping)
 ["milk", "bread"]
 >>> shopping.remove("popsicles")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: list.remove(x): x not in list"
+```
+
+---
+class: middle
+
+# Changing list items
+
+```
+>>> shopping[0]
+milk
+>>> shopping[0] = "skim milk"
+>>> shopping[0]
+skim milk
 ```
 
 ---
@@ -344,6 +371,495 @@ class: middle
 ```
 >>> if "bread" in shopping:
 >>>     print("We need bread!")
+```
+
+Testing membership
+
+---
+class: middle
+
+# Specific Items
+
+Lists always maintain their order, and you can get members of the list with sqare-brackets
+
+```
+>>> shopping[0]
+"milk"
+>>> shopping[10]
+```
+.red[```
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: list index out of range
+```]
+
+If you go off the end of a list, you'll get an error
+
+.red[Numbering starts at 0!]
+
+---
+class: middle
+
+# Challenge: Make a list of lists!
+
+---
+class: middle
+
+# Hip to be Square
+
+Well...polygon...
+
+```
+>>> square = [
+    [1, 1],
+    [1, 2],
+    [2, 1],
+    [2, 2],
+  ]
+```
+
+```
+>>> for corner in square:
+>>>     print corner
+```
+
+---
+class: middle
+
+# Nested lists, nested loops
+
+```
+# Outer loop
+>>> for corner in square:
+        # Inner loop
+>>>     for point in corner:
+>>>         print(point)
+>>>     print(corner)
+
+# Parameter unpacking
+>>> for x, y in square:
+>>>     print("X: {}, Y: {}".format(x, y))
+```
+
+---
+class: middle
+
+# Quick aside: unpacking assignments
+
+```
+x, y = 1, 2
+```
+
+---
+class: middle
+
+# Tuples
+
+```
+>>> my_tup = (1, 2, 3)
+>>> my_tup[1]
+2
+>>> my_tup[1] = 99
+```
+.red[```
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object does not support item assignment"
+```]
+
+---
+class: middle
+
+Tuples cannot have their members changed
+
+.medium[When might this be useful?]
+---
+class: middle
+
+# Challenge: remember our list of lists?
+
+Make a:
+
+- tuple of tuples
+- list of tuples
+- tuple of lists
+
+.footnote[Challenge: Can you change the members of a list in a tuple?]
+
+---
+class: middle
+
+# Dictionaries - a.k.a. maps
+
+A dictionary is a mapping of a key to a value
+
+The keys are *always* unique
+
+Dictionaries do *not* have a defined order like lists and tuples
+
+---
+class: middle
+
+```
+>>> phone_book = {
+    "Alex": "555-5555",
+    "Sam": "999-9999",
+    "Cory": "111-1111",
+}
+>>> phone_book["Alex"]
+555-5555
+```
+
+---
+class: middle
+
+# Challenge: Edit Sam's phone number
+---
+class: middle
+
+# Using a dictionary
+```
+>>> phone_book["Sam"] = "888-8888"
+>>> phone_book.pop("Sam")
+888-8888
+>>> phone_book.update(
+    {
+        "Chris": "222-2222"
+    }
+)
+
+>>> phone_book.keys()
+>>> phone_book.values()
+>>> phone_book.items()
+```
+
+---
+class: middle
+
+# Looping with dictionaries
+
+```
+>>> for key, data in phone_book.items()
+>>>     print("{} : {}".format(key, data))
+```
+
+---
+class: middle
+
+# Getting Help
+
+We've seen lots of great builtin stuff for dictionaries, but how would we find more?
+
+---
+class: middle
+
+# Getting Help
+
+`help(dict)`
+
+Google "Python 3 dictionary documentation"
+
+Go straight to https://docs.python.org/3/
+
+Ask your neighbor (doesn't always work)
+
+---
+class: middle
+
+# Exceptional Cases
+
+So far, we've seen things like TypeError and it's meant we did something wrong. You can handle those errors yourself!
+
+---
+class: middle
+
+# Catching Exceptions
+
+Try to do .red[thing] but if that doesn't work, do .red[something else].
+
+```
+>>> phone_book["Pat"]
+KeyError
+>>> try:
+        phone_book["Pat"]
+    except KeyError:
+        print("Pat isn't in the phone book!")
+```
+
+---
+class: middle
+
+# Great!
+
+Stretch break, 15 minutes
+
+---
+class: middle
+
+# What is a function?
+
+---
+class: middle
+
+# Fast review
+
+```
+def print_phone_book(book=None):
+    if book is None:
+        print("No numbers!")
+        return
+    for k, v in book.items():
+        print("{}'s number is {}".format(k, v))
+```
+
+---
+class: middle
+
+# Functions
+
+Take data, do a thing, return data
+
+---
+class: middle
+
+# Objects
+
+Objects are the "nouns" we've been working with already
+
+```
+>>> import turtle
+>>> type(turtle.Turtle)
+>>> <class 'type'>
+>>> type(turtle.Turtle())
+>>> <class 'turtle.Turtle'>
+```
+
+---
+class: middle
+
+# Objects as cookies
+
+## Classes as cookie cutters
+
+---
+class: middle
+
+# Why
+
+What kinds of things do classes make easier?
+
+.large[Reasoning]
+
+---
+class: middle
+
+# Let's make a store!
+
+- Keep an inventory of items
+- Customers have to be able to buy stuff
+
+---
+class: middle
+
+# Start a new file
+
+.medium[`store.py`]
+
+```
+class Store:
+    def __init__
+```
+
+---
+class: middle
+
+# `__init__`
+
+Special setup *method*. So what's that mean?
+
+```
+    def __init__(self, ....):
+        self.name = "Wegman's"
+```
+
+A method is a function, but the first argument is `self` (the object).
+
+Methods are attached to objects.
+
+---
+class: middle
+
+```
+class Store:
+    def __init__(self, name):
+        self.name = name
+
+    def welcome():
+        print("Welcome to {}".format(self.name))
+```
+
+---
+class: middle
+
+# Make an instance of our class
+
+```
+class Store:
+    def __init__(self, name):
+        self.name = name
+
+    def welcome():
+        print("Welcome to {}".format(self.name))
+
+if __name__ == "__main__":
+    wegmans = Store("Wegman's")
+    print(type(wegmans))
+    wegmans.welcome()
+    print(wegmans.name)
+```
+
+---
+class: middle
+
+Methods can persist state without needing you to pass arguments every time.
+
+State can be saved on the object.
+
+---
+class: middle
+
+# Now we need an inventory
+
+What would be a good way to keep prices for every item?
+---
+class: middle
+
+```
+class Store:
+    def __init__(self, name):
+        self.name = name
+        self.inventory = {}
+
+    def welcome():
+        print("Welcome to {}".format(self.name))
+
+    def add_item(name, price):
+        self.inventory[name] = price
+
+    def remove_item(name):
+        if name in self.inventory.keys():
+            self.inventory.pop(name)
+        else:
+            print("Item {} not in store".format(name))
+```
+
+---
+class: middle
+
+# Quick aside
+
+How do you write a program?
+
+- Think
+- Write a little code
+- Test it
+- Repeat
+
+## Tips:
+
+- Break the big problem into smaller problems
+- Choose an approach that makes your life easier
+- If you have no idea, try to find an example and explain it to yourself
+
+---
+class: middle
+
+# Debugging
+
+- Read the error message, sometimes they'll tell you exactly what went wrong. Sometimes they aren't so helpful.
+- Find the line that caused the error and read the code around it. .red[Be vigilant for typos]
+- Comment out the code that you think is causing the problem one line at a time
+- Print the values of variables where the problem happens
+- Print the `type()` of variables, are they what you expected?
+- Explain to your monitor (or rubber duck) why the problem *can't possibly be happening*. This works more than you'd think.
+
+---
+class: middle
+
+# Assert Statements
+
+```
+>>> assert 2 == 3
+```
+
+.red[```
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AssertionError
+```]
+
+Great for debugging and for keeping in your code to make sure the world is the way you thought.
+
+---
+class: middle
+
+# Naming Things
+
+- Descriptive
+- Memorable
+- Easy to type
+- Intuitive to someone other than you (including you a week from now)
+
+---
+class: middle
+
+# Moving Ahead
+
+Ok, that's the end of preset examples.
+
+Now we're going to add features and I'm going to follow along on screen.
+
+---
+class: middle
+
+# Feature ideas
+
+- Purchase items by specifying items and quantities
+- Make it easier to debug by adding a way to toggle print statements on and off
+- Check if a store has something
+- Keep track of how many of each item a store has (we have price information, now we need quantity information)
+- Make your class show documentation when someone runs `help(Store)`
+
+---
+class: middle
+
+# Challenge
+
+- Read inventory from a file
+  - sample at http://rsb.io/talks/gdi/python-2/inventory.csv
+
+---
+class: middle
+
+# Reading Files
+
+```
+with open("file.txt") as the_data:
+    line_number = 1
+    for line in the_data.readlines():
+        print("Line {}: {}".format(line_number, line))
+        line_number += 1
+```
+
+---
+class: middle
+
+# Writing Files
+
+```
+with open("file.txt", 'w') as the_data:
+    the_data.write("Hello")
+    the_data.write("This is a file")
 ```
 
 ---
