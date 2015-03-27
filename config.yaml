@@ -7,4 +7,5 @@ theme: squairy_light
 indexes:
     tag: tags
     category: categories
+    series: series
     talk: talks

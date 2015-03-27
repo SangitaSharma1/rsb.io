@@ -2,6 +2,7 @@
 title: An Overview of Hugo-Lambda
 date: "2015-03-25"
 tags: ["code"]
+series: ["hugo-lambda"]
 slug: overview-of-hugo-lambda
 ---
 
@@ -51,8 +52,8 @@ give it a shot and raise some [issues][issues].
 Coming soon: more under-the-hood details and a how-to post to migrate your
 site.
 
-[lambda]: https://aws.amazon.com/lambda/
 [hugo]: http://gohugo.io/
-[lambdash]: https://github.com/alestic/lambdash
 [hugolambda]: https://github.com/ryansb/hugo-lambda
 [issues]: https://github.com/ryansb/hugo-lambda/issues
+[lambda]: https://aws.amazon.com/lambda/
+[lambdash]: https://github.com/alestic/lambdash
