@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="1;url={{ .Params.homepage }}">
+    <script type="text/javascript">
+      window.location.href = "{{ .Params.homepage }}"
+    </script>
+    <title>Page Redirection</title>
+  </head>
+  <body>
+    The presentation has moved <a href='{{ .Params.homepage }}'>here</a>, you should be redirected automatically.
+  </body>
+</html>
