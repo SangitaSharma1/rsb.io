@@ -17,12 +17,15 @@
       </ul>
       <h2>Writing</h2>
       <ul class="undecorated postlist">
-        {{ range where .Data.Pages.ByWeight "Section" "external" | first 2 }}
+        {{ range where .Data.Pages.ByWeight "Section" "posts" | first 4 }}
         <li>
           {{ .Render "li" }}
         </li>
         {{ end }}
-        {{ range where .Data.Pages.ByWeight "Section" "posts" | first 2 }}
+      </ul>
+      <h2>Guest Posts</h2>
+      <ul class="undecorated postlist">
+        {{ range where .Data.Pages.ByWeight "Section" "external" | first 4 }}
         <li>
           {{ .Render "li" }}
         </li>
