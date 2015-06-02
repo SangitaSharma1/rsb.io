@@ -31,16 +31,11 @@ nosetests.xml
 # Translations
 *.mo
 
-# Mr Developer
-.mr.developer.cfg
-.project
-.pydevproject
-
 # Excess files for talks
-talks/*/index.md
-talks/*/index.html
-talks/libraries
-talks/*/libraries
+static/talks/*/index.md
+static/talks/*/index.html
+static/talks/libraries
+static/talks/*/libraries
 .nojekyll
 
 # golang static site server files
