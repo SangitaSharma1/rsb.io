@@ -55,7 +55,9 @@ functions and event sources. I haven't built a minimum viable permissions (the
 
 Once the underlying resources are deployed, you're almost ready to go. You
 still need one thing though...a web site! For demo purposes you can download
-the [Hugo documentation][hugodocs], which is itself a Hugo static site.
+the [Hugo documentation][hugodocs], which is itself a Hugo static site. Make
+sure you check out version 0.14, because the documentation fails to build with
+the latest stable version.
 
 To actually deploy your site, all you need to do is put the site in the
 `input.your.site` bucket. I use the [awscli][awscli] [s3 sync][sync] command.
