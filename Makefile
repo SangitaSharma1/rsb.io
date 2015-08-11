@@ -3,6 +3,24 @@ ESC := esc
 HUGO := hugo
 PORT := 8080
 
+define goserver
+package main
+
+import "net/http"
+import "log"
+import "runtime"
+
+var _ = runtime.GOMAXPROCS(runtime.NumCPU())
+
+func main() {
+	http.Handle("/", http.FileServer(FS(false)))
+	log.Println("Listening on port 8080")
+	log.Println("Running ", runtime.GOMAXPROCS(0), "Procs: ")
+	log.Fatal(http.ListenAndServe(":8080", nil))
+}
+endef
+export goserver
+
 .PHONY: all server static clean deploy
 
 all: static server
@@ -16,14 +34,7 @@ server: static main.go
 	$(GOCC) build -o rsbio
 
 main.go:
-	@echo "package main" > main.go
-	@echo 'import "net/http"' >> main.go
-	@echo 'import "log"' >> main.go
-	@echo "func main() {" >> main.go
-	@echo "	http.Handle(\"/\", http.FileServer(FS(false)))" >> main.go
-	@echo "	log.Println(\"Listening on port $(PORT)\")" >> main.go
-	@echo "	log.Fatal(http.ListenAndServe(\":$(PORT)\", nil))" >> main.go
-	@echo "}" >> main.go
+	echo "$$goserver" > main.go
 
 static:
 	@$(HUGO)
