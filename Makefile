@@ -26,8 +26,7 @@ export goserver
 all: static server
 
 deploy:
-	boto-rsync --delete . s3://input.rsb.io/
-	#boto-rsync --delete --dry-run --grant public-read public/ s3://rsb.io/
+	aws s3 sync --exclude '.git/*' . s3://input.rsb.io/
 
 server: static main.go
 	$(ESC) -o content.go -pkg main -prefix public public
