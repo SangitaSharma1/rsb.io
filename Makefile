@@ -26,7 +26,7 @@ export goserver
 all: static server
 
 deploy:
-	aws s3 sync --exclude '.git/*' . s3://input.rsb.io/
+	aws s3 sync --exclude 'talks/*' --exclude 'public/*' --exclude '.git/*' --exclude Makefile --exclude rsbio --exclude content.go . s3://input.rsb.io/
 
 server: static main.go
 	$(ESC) -o content.go -pkg main -prefix public public
