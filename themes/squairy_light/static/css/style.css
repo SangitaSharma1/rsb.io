@@ -32,9 +32,14 @@
   border-top-color: #aaa;
 }
 
-p {
+.post-content {
   font-size: .95em;
-  max-width: 33em;
+  max-width: 40em;
+  min-width: 20em;
+}
+
+.sidebar {
+  min-width: 24em;
 }
 
 body {
