@@ -33,9 +33,9 @@
 }
 
 p {
-  font-size: .95em;
   max-width: 33em;
 }
+.post-content { max-width: 33em }
 
 body {
   font-family: "Noto Sans", sans-serif;
