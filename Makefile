@@ -37,6 +37,7 @@ main.go:
 
 static:
 	@$(HUGO)
+	find public -size 0 -delete
 
 clean:
 	rm -rf *.go public rsbio
