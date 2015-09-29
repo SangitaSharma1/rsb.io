@@ -32,15 +32,8 @@
   border-top-color: #aaa;
 }
 
-.post-content {
-  font-size: .95em;
-  max-width: 40em;
-  min-width: 20em;
-}
-
-.sidebar {
-  min-width: 24em;
-}
+p { max-width: 33em; }
+.post-content { max-width: 33em }
 
 body {
   font-family: "Noto Sans", sans-serif;
