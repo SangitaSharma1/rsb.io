@@ -9,8 +9,9 @@ slug: namedtuple-and-sqlalchemy
 starring role in many of my work and personal projects. OpenStack runs on
 SQLAlchemy.
 
-As much as the ORM helps me, sometimes SQLAlchemy Core is plenty for my the
-project of the moment. I have a few pieces of data that map to a table easily,
+The ORM in SQLAlchemy is helpful for projects with complex relations and logic,
+but when there are only simple data types SQLAlchemy Core is often all you
+need. I have a few pieces of data that map to a table easily,
 and relations aren't important. For that case, the humble
 [collections.namedtuple][namedtuple] is invaluable. Declaring a namedtuple that
 matches column names is an easy way to add a little syntax sugar on top of
@@ -33,7 +34,7 @@ let's build the persistence portion.
 ```
 import json, sqlalchemy
 
-connection_string = 'postgresql:///example'
+connection_string = 'sqlite://'
 db = sqlalchemy.create_engine(connection_string)
 engine = db.connect()
 meta = sqlalchemy.MetaData(engine)
@@ -109,5 +110,9 @@ and has strong separation of concerns. Additionally, without an ORM concerns
 about exactly when database queries happen disappear because no property
 accesses can trigger lazy loads.
 
+The code from this post is also available as an [IPython notebook][nb] if you'd
+like to run or modify it.
+
 [namedtuple]: https://docs.python.org/3/library/collections.html#collections.namedtuple
 [sqla]: http://www.sqlalchemy.org/
+[nb]: https://gist.github.com/ryansb/9440a214184c5126ac21
