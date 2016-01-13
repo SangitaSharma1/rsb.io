@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AWS Lambda Overview</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="slides.css" rel="stylesheet">
+  </head>
+  <body>
+    <textarea id="source">
+layout: true
+class: middle
+---
+
+# AWS Lambda Overview
+
+---
+
+# AWS Meetup, Rochester
+
+Ryan Scott Brown — [@ryan_sb](https://twitter.com/ryan_sb)
+
+---
+
+# Agenda
+
+1. Of Web Apps & Workers
+1. Event Sources
+1. Supported Languages
+
+.footnote[Stop me any time for questions]
+
+---
+
+# Think PaaS
+
+![](icons/compute/ec2/Compute_AmazonEC2.png)
+EC2 == Infrastructure
+
+![](icons/compute/elastic-beanstalk/Compute_ElasticBeanstalk.png)
+Beanstalk == Platform
+
+![](icons/compute/lambda/Compute_Lambda.png)
+Lambda == Platform...er?
+
+---
+class: center, middle
+
+# No server is simpler than no server at all
+
+---
+
+# Use Cases
+
+* API backends (mobile, web, IoT)
+* Microservices with API Gateway
+* On-demand workers
+* Data pipelines with S3, DynamoDB, and Kinesis
+* Build smarter infrastructure
+
+Critically, you never pay for idle time
+
+---
+
+# How it Works
+
+Events come in, code executes on the event
+
+```
+{
+  "Records": [
+    {
+      "eventVersion": "2.0",
+      "eventTime": "1970-01-01T00:00:00.000Z",
+      "s3": {
+        "configurationId": "testConfigRule",
+        "object": {
+          "eTag": "0123456789abcdef0123456789abcdef",
+          "sequencer": "0A1B2C3D4E5F678901",
+          "key": "HappyFace.jpg",
+          "size": 1024
+        },
+        "bucket": {"arn": "arn:aws:s3:::mybucket", "name": "sourcebucket"},
+        "s3SchemaVersion": "1.0"
+      },
+      "awsRegion": "us-east-1",
+      "eventName": "ObjectCreated:Put",
+      "eventSource": "aws:s3"
+    }
+  ]
+}
+```
+
+---
+
+# Quick Example
+
+Make your bucket all public, all the time
+
+---
+
+# Restrictions
+
+* Node.js v0.10, Python 2.7, or Java 8
+* 6MB request size
+* 10 second HTTP API timeout
+* 300 seconds execution limit
+* 50 MB deployment package
+
+---
+class: center, middle
+
+# Programming
+
+.large["The computer will do exactly as you tell it. Not exactly as you mean."]
+
+---
+class: middle
+
+# Questions?
+
+.footnote[These slides are available at [rsb.io/talks/aws-lambda](http://rsb.io/talks/aws-lambda/)]
+
+    </textarea>
+    <script src="remark-latest.min.js"></script>
+    <script>var slideshow = remark.create();</script>
+  </body>
+</html>
