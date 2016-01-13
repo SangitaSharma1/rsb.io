@@ -10,12 +10,9 @@
 layout: true
 class: middle
 ---
+class: center
 
 # AWS Lambda Overview
-
----
-
-# AWS Meetup, Rochester
 
 Ryan Scott Brown — [@ryan_sb](https://twitter.com/ryan_sb)
 
@@ -23,9 +20,11 @@ Ryan Scott Brown — [@ryan_sb](https://twitter.com/ryan_sb)
 
 # Agenda
 
-1. Of Web Apps & Workers
+1. Platforms & Positioning
 1. Event Sources
-1. Supported Languages
+1. S3 Handlers
+1. Of Web Apps & Workers
+1. Restrictions
 
 .footnote[Stop me any time for questions]
 
@@ -35,6 +34,9 @@ Ryan Scott Brown — [@ryan_sb](https://twitter.com/ryan_sb)
 
 ![](icons/compute/ec2/Compute_AmazonEC2.png)
 EC2 == Infrastructure
+
+![](icons/compute/ec2-container-service/Compute_AmazonEC2ContainerService.png)
+Elastic Container Service == Infrastructure
 
 ![](icons/compute/elastic-beanstalk/Compute_ElasticBeanstalk.png)
 Beanstalk == Platform
@@ -92,9 +94,68 @@ Events come in, code executes on the event
 
 ---
 
+# S3
+
+* Decide what actions you want triggers on
+* Yes, you can make infinite loops (yay?)
+* Events can be for all keys, one folder, or a specific suffix (`*.png`)
+
+---
+
 # Quick Example
 
 Make your bucket all public, all the time
+
+```
+import boto3
+s3 = boto3.client('s3')
+
+def lambda_handler(event, context):
+    for rec in event['Records']:
+        client.put_object_acl(
+            Bucket=rec['s3']['bucket']['name'],
+            Key=rec['s3']['object']['key'],
+            ACL='public-read',
+        )
+```
+
+---
+
+# Kinesis
+
+Lambda (the service) invokes your Lambda (custom code) with events
+
+* Durable event streams from *any* application
+* Many consumers
+* Kinesis ensures that all jobs are seen by consumers
+
+---
+
+# DynamoDB
+
+Think triggers or stored procedures
+
+* Complex data validations
+* Replication or record keeping
+* Update other copies of the data
+* Receive both the new and old values for comparison
+
+---
+
+# SNS
+
+* Got CloudWatch?
+* External services have SNS integration already
+* Coordinate pipelines with SNS
+
+---
+
+# API Gateway
+
+* REST API in front of Lambda
+* Handles API keys and rate limiting
+
+---
 
 ---
 
@@ -107,11 +168,22 @@ Make your bucket all public, all the time
 * 50 MB deployment package
 
 ---
-class: center, middle
 
-# Programming
+# Deploying
 
-.large["The computer will do exactly as you tell it. Not exactly as you mean."]
+Plenty of 3rd-party tools, but the artifacts are zip files in S3, making any deploy pipeline viable
+
+---
+
+# Versioned Functions
+
+`arn:aws:lambda:aws-region:acct-id:function:myFunction`
+
+`arn:aws:lambda:aws-region:acct-id:function:myFunction:$LATEST`
+
+`arn:aws:lambda:aws-region:acct-id:function:myFunction:v0.1.1`
+
+`arn:aws:lambda:aws-region:acct-id:function:myFunction:PROD`
 
 ---
 class: middle
