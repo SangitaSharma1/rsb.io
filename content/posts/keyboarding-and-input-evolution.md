@@ -1,6 +1,6 @@
 ---
 title: "Keyboards and the State of Typing"
-date: "2016-02-21"
+date: "2016-02-20"
 tags: ["tools", "keyboards", "hardware"]
 slug: keyboards-and-the-state-of-input
 ---
