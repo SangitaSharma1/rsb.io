@@ -4,6 +4,8 @@ all:
 	@ $(foreach var,$(PRESOS),\
 	sed -i -e 's/="libraries/="..\/libraries/' ./$(var)/index.html;)
 	@ $(foreach var,$(PRESOS),\
+	sed -i -e 's|http://ajax|//ajax|' ./$(var)/index.html;)
+	@ $(foreach var,$(PRESOS),\
 	rsync -a ./$(var)/libraries/ ./libraries;)
 	@ $(foreach var,$(PRESOS),\
 	rm -rf ./$(var)/libraries;)
