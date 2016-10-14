@@ -28,7 +28,7 @@ mode        : selfcontained # {standalone, draft}
 * Expose resources (let programmers be smart)
 * Garbage collected (they aren't that smart...)
 
-```{go}
+```
 import (
         "fmt"
         "github.com/user/project"
@@ -79,7 +79,7 @@ There are no shared libraries. `go build` packages in all dependencies
 package myCoolApplication
 
 # Using a package
-```{go}
+```
 import (
     anotherpathmodule "vcs.io/repo/path"
     "os/path"
@@ -94,7 +94,7 @@ path.SomeValue
 
 # Capital letters public
 
-```{go}
+```
 func ReadFromBackend(address string) string {
     connection := connectTo(address)
     return connection.Read()
@@ -104,7 +104,7 @@ func ReadFromBackend(address string) string {
 # Lower case stay protected
 You can use protected values anywhere in your module
 
-```{go}
+```
 type MyConnectionThing struct {
     FieldName string
 }
@@ -121,7 +121,7 @@ func connectTo(address string) MyConnectionThing {
 
 # Implict
 
-```{go}
+```
 type Foo interface {
     Bar(int) string
     Baz() int
@@ -141,7 +141,7 @@ func (f *Foo) Bar(howmany int) string {
 
 ## Write
 
-```{go}
+```
 import (
         "fmt"
         "time"
@@ -160,7 +160,7 @@ func shout(where string, out *chan string) {
 
 ## Read
 
-```{go}
+```
 func main() {
         // a channel can have many writers and many readers
         lnk, oma := make(chan string), make(chan string)

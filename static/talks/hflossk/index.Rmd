@@ -33,7 +33,7 @@ mode        : selfcontained # {standalone, draft}
 
 ## Flask
 
-```{python}
+```
 @app.route('/syllabus')
 def syllabus():
     """
@@ -50,7 +50,7 @@ def syllabus():
 
 ## More Flask
 
-```{python}
+```
 @app.route('/participants/<year>/<term>/<username>')
 def participant_page(year, term, username):
     participant_data = {}
@@ -196,7 +196,7 @@ script: tox
 
 ## Talking to `git`
 
-```{python}
+```
 def is_dirty():
     """Check for uncommitted changes. True if dirty."""
     repo = git.Repo(os.getcwd())
@@ -208,7 +208,7 @@ def is_dirty():
 
 ## Branching Out
 
-```{python}
+```
 with TempBranch(branch, repo, delete=True):
     for name, body in openshift_files.items():
         with open(name, 'w') as f:
