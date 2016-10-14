@@ -32,7 +32,7 @@ LGPLv3 open source.
 * Async - Runs in background threads
 * Crossplatform
 
-```{c}
+```
 zmq_bind (socket, "tcp://*:5555");
 zmq_bind (socket, "udp://*:9999");
 zmq_bind (socket, "inproc://myipc");
@@ -101,7 +101,7 @@ All-or-nothing delivery
 
 ## Hello There
 
-```{python}
+```
 import zmq
 
 context = zmq.Context()
