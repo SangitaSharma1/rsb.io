@@ -9,3 +9,4 @@ all:
 	rsync -a ./$(var)/libraries/ ./libraries;)
 	@ $(foreach var,$(PRESOS),\
 	rm -rf ./$(var)/libraries;)
+	sed -i -e 's|http://fonts|//fonts|' libraries/frameworks/io2012/css/slidify.css
