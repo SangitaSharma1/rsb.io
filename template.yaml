@@ -12,24 +12,40 @@ Parameters:
   PriceClass:
     Description: "Price class. Default is US-only, PriceClass_All is worldwide"
     Default: PriceClass_100
-    AllowedValues: [ PriceClass_100, PriceClass_200, PriceClass_All ]
+    AllowedValues:
+      - PriceClass_100
+      - PriceClass_200
+      - PriceClass_All
     Type: String
   CacheMinimum:
     Description: "Minimum cache lifetime in seconds for the CloudFront distribution"
     Default: 90
     Type: Number
   CacheDefault:
-    Description: "Default cache lifetime in seconds for the CloudFront distribution"
-    Default: 300
+    Description: "Default cache lifetime in seconds for the CloudFront distribution (default 30 minutes)"
+    Default: 1800
     Type: Number
   CacheMaximum:
-    Description: "Maximum cache lifetime in seconds for the CloudFront distribution"
-    Default: 3600
+    Description: "Maximum cache lifetime in seconds for the CloudFront distribution (default 3 months)"
+    Default: 7776000
     Type: Number
   ViewerProtocol:
     Description: "Minimum cache lifetime in seconds for the CloudFront distribution"
-    Default: allow-all
-    AllowedValues: [ redirect-to-https, https-only, allow-all ]
+    Default: redirect-to-https
+    AllowedValues:
+      - redirect-to-https
+      - https-only
+      - allow-all
+    Type: String
+  SSLSupportMethod:
+    Description: >
+      SSL support options. sni-only requires all clients support SNI (so no
+      IE5, etc) or vip (Virtual IP address). VIP support requires costs way
+      more per month, and SNI is supported by a vast majority of devices.
+    Default: sni-only
+    AllowedValues:
+      - sni-only
+      - vip
     Type: String
 Resources:
   StaticBucket:
@@ -43,7 +59,6 @@ Resources:
     Type: "AWS::S3::Bucket"
     Description: "Aliased bucket for www.domain.com"
     Properties:
-      AccessControl: BucketOwnerFullControl
       BucketName: !Join [".", [ "www", !Ref SiteDomain ]]
       WebsiteConfiguration:
         RedirectAllRequestsTo:
@@ -59,6 +74,7 @@ Resources:
     Type: "AWS::CloudFront::Distribution"
     Properties:
       DistributionConfig:
+        Enabled: true
         PriceClass: !Ref PriceClass
         CustomErrorResponses:
           - ErrorCachingMinTTL: 10
@@ -67,10 +83,9 @@ Resources:
             ErrorCode: 403
           - ErrorCachingMinTTL: 30
             ErrorCode: 404
-        Enabled: true
         ViewerCertificate:
           AcmCertificateArn: !Ref SSLCert
-          SslSupportMethod: sni-only
+          SslSupportMethod: !Ref SSLSupportMethod
         Aliases:
           - !Ref SiteDomain
         Origins:
@@ -86,14 +101,16 @@ Resources:
               HTTPSPort: 443
               OriginProtocolPolicy: http-only
         DefaultCacheBehavior:
+          # CFN supports gzipped content now
           Compress: true
-          MinTTL: !Ref CacheMinimum
-          DefaultTTL: !Ref CacheDefault
-          MaxTTL: !Ref CacheMaximum
+          # Allows cachebusting with things like /css/site.css?h=3958efd
           ForwardedValues:
             QueryString: true
           TargetOriginId: s3origin
           ViewerProtocolPolicy: !Ref ViewerProtocol
+          MinTTL: !Ref CacheMinimum
+          DefaultTTL: !Ref CacheDefault
+          MaxTTL: !Ref CacheMaximum
   SiteDomainRecords:
     Type: "AWS::Route53::RecordSetGroup"
     Properties:
@@ -111,8 +128,10 @@ Resources:
           Type: A
           AliasTarget:
             DNSName: !FindInMap [ RegionMap, !Ref "AWS::Region", websiteendpoint ]
-            HostedZoneId: !FindInMap [ RegionMap, !Ref "AWS::Region", S3hostedzoneID ]
+            HostedZoneId: !FindInMap [ RegionMap, !Ref "AWS::Region", ZoneId ]
         - Name: !Ref SiteDomain
+          # (Oct. 2016) This AAAA record only works for some CloudFront
+          # distributions because IPv6 support isn't rolled out entirely
           Type: AAAA
           AliasTarget:
             DNSName: !GetAtt CDN.DomainName
@@ -141,6 +160,7 @@ Metadata:
           - CacheDefault
           - CacheMaximum
           - ViewerProtocol
+          - SSLSupportMethod
 Mappings:
   RegionMap:
     # This is a map of the S3 website endpoints as of Jan 7 2016
@@ -148,28 +168,28 @@ Mappings:
     # Don't edit this
     sa-east-1:
       websiteendpoint: "s3-website-sa-east-1.amazonaws.com"
-      S3hostedzoneID: "Z31GFT0UA1I2HV"
+      ZoneId: "Z31GFT0UA1I2HV"
     ap-northeast-1:
       websiteendpoint: "s3-website-ap-northeast-1.amazonaws.com"
-      S3hostedzoneID: "Z2M4EHUR26P7ZW"
+      ZoneId: "Z2M4EHUR26P7ZW"
     ap-northeast-2:
       websiteendpoint: "s3-website-ap-northeast-2.amazonaws.com"
-      S3hostedzoneID: "Z3W03O7B5YMIYP"
+      ZoneId: "Z3W03O7B5YMIYP"
     ap-southeast-1:
       websiteendpoint: "s3-website-ap-southeast-1.amazonaws.com"
-      S3hostedzoneID: "Z3O0J2DXBE1FTB"
+      ZoneId: "Z3O0J2DXBE1FTB"
     ap-southeast-2:
       websiteendpoint: "s3-website-ap-southeast-2.amazonaws.com"
-      S3hostedzoneID: "Z1WCIGYICN2BYD"
+      ZoneId: "Z1WCIGYICN2BYD"
     eu-west-1:
       websiteendpoint: "s3-website-eu-west-1.amazonaws.com"
-      S3hostedzoneID: "Z1BKCTXD74EZPE"
+      ZoneId: "Z1BKCTXD74EZPE"
     us-west-2:
       websiteendpoint: "s3-website-us-west-2.amazonaws.com"
-      S3hostedzoneID: "Z3BJ6K6RIION7M"
+      ZoneId: "Z3BJ6K6RIION7M"
     us-west-1:
       websiteendpoint: "s3-website-us-west-1.amazonaws.com"
-      S3hostedzoneID: "Z2F56UZL2M1ACD"
+      ZoneId: "Z2F56UZL2M1ACD"
     us-east-1:
       websiteendpoint: "s3-website-us-east-1.amazonaws.com"
-      S3hostedzoneID: "Z3AQBSTGFYJSTF"
+      ZoneId: "Z3AQBSTGFYJSTF"
