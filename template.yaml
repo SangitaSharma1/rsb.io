@@ -95,7 +95,7 @@ Resources:
                 - .
                 -
                   - !Ref StaticBucket
-                  - !FindInMap [ RegionMap, !Ref "AWS::Region", websiteendpoint ]
+                  - !FindInMap [ RegionMap, !Ref "AWS::Region", WebEndpoint ]
             CustomOriginConfig:
               HTTPPort: 80
               HTTPSPort: 443
@@ -127,7 +127,7 @@ Resources:
         - Name: !Join [".", [ "www", !Ref SiteDomain ]]
           Type: A
           AliasTarget:
-            DNSName: !FindInMap [ RegionMap, !Ref "AWS::Region", websiteendpoint ]
+            DNSName: !FindInMap [ RegionMap, !Ref "AWS::Region", WebEndpoint ]
             HostedZoneId: !FindInMap [ RegionMap, !Ref "AWS::Region", ZoneId ]
         - Name: !Ref SiteDomain
           # (Oct. 2016) This AAAA record only works for some CloudFront
@@ -167,29 +167,29 @@ Mappings:
     # http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
     # Don't edit this
     sa-east-1:
-      websiteendpoint: "s3-website-sa-east-1.amazonaws.com"
+      WebEndpoint: "s3-website-sa-east-1.amazonaws.com"
       ZoneId: "Z31GFT0UA1I2HV"
     ap-northeast-1:
-      websiteendpoint: "s3-website-ap-northeast-1.amazonaws.com"
+      WebEndpoint: "s3-website-ap-northeast-1.amazonaws.com"
       ZoneId: "Z2M4EHUR26P7ZW"
     ap-northeast-2:
-      websiteendpoint: "s3-website-ap-northeast-2.amazonaws.com"
+      WebEndpoint: "s3-website-ap-northeast-2.amazonaws.com"
       ZoneId: "Z3W03O7B5YMIYP"
     ap-southeast-1:
-      websiteendpoint: "s3-website-ap-southeast-1.amazonaws.com"
+      WebEndpoint: "s3-website-ap-southeast-1.amazonaws.com"
       ZoneId: "Z3O0J2DXBE1FTB"
     ap-southeast-2:
-      websiteendpoint: "s3-website-ap-southeast-2.amazonaws.com"
+      WebEndpoint: "s3-website-ap-southeast-2.amazonaws.com"
       ZoneId: "Z1WCIGYICN2BYD"
     eu-west-1:
-      websiteendpoint: "s3-website-eu-west-1.amazonaws.com"
+      WebEndpoint: "s3-website-eu-west-1.amazonaws.com"
       ZoneId: "Z1BKCTXD74EZPE"
     us-west-2:
-      websiteendpoint: "s3-website-us-west-2.amazonaws.com"
+      WebEndpoint: "s3-website-us-west-2.amazonaws.com"
       ZoneId: "Z3BJ6K6RIION7M"
     us-west-1:
-      websiteendpoint: "s3-website-us-west-1.amazonaws.com"
+      WebEndpoint: "s3-website-us-west-1.amazonaws.com"
       ZoneId: "Z2F56UZL2M1ACD"
     us-east-1:
-      websiteendpoint: "s3-website-us-east-1.amazonaws.com"
+      WebEndpoint: "s3-website-us-east-1.amazonaws.com"
       ZoneId: "Z3AQBSTGFYJSTF"
