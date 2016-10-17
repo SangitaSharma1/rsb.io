@@ -193,3 +193,6 @@ Mappings:
     us-east-1:
       WebEndpoint: "s3-website-us-east-1.amazonaws.com"
       ZoneId: "Z3AQBSTGFYJSTF"
+    us-east-2:
+      WebEndpoint: "s3-website-us.east-2.amazonaws.com"
+      ZoneId: "Z2O1EMRO9K5GLX"
