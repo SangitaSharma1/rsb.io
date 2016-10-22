@@ -1,5 +1,5 @@
 MetaDataFormat: yaml
-baseurl: http://rsb.io
+baseurl: https://rsb.io
 languageCode: en-us
 title: Ryan Scott Brown
 theme: squairy_light
